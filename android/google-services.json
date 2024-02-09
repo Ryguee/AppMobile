@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "880416204335",
+    "project_id": "jeuographie",
+    "storage_bucket": "jeuographie.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:880416204335:android:c27c6369168f328e1b08da",
+        "android_client_info": {
+          "package_name": "com.exemple.jeuographie"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAkSP5BVKZwnFXTmtpLFoG5YhiPBqzarOU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
