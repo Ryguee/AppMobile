@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Pages/details/Connexion/connexion.dart';
+import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/all/Drapeau/Drapeau1.dart';
 import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/difficulte_lieu.dart';
 import 'package:flutter_application_1/Pages/details/Parametres/parametre1.dart';
 import 'package:flutter_application_1/Pages/details/Profil/profil.dart';
@@ -147,8 +148,7 @@ class MiniJeuPages extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(
-                      builder: (context) => const ConnexionPage()),
+                  MaterialPageRoute(builder: (context) => DrapeauPage()),
                 );
               })),
       Positioned(

@@ -1,12 +1,12 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/all/subscreens/mapscreen.dart';
 
-import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/all/Map/map.dart';
 import 'dart:math';
 
 import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/vrai/faux/faux4.dart';
 
-import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/vrai/vrai4.dart';
+import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/vrai/faux/vrai4.dart';
 import 'package:flutter_application_1/Pages/details/Salon%20Mini%20jeu/Mini_jeu.dart';
 
 void main() {
@@ -187,9 +187,7 @@ class Europe4Page extends StatelessWidget {
         left: widthScreen / 2 - 110,
         child: const Text(
           'Quel est le pays en rouge?',
-          style: TextStyle(
-            fontSize: 18,
-          ),
+          style: TextStyle(fontSize: 18),
         ),
       ),
       MapScreen(imageUrl: "assets/${vraiPays}.png"),
@@ -362,4 +360,3 @@ String _getInfoPays(String pays) {
       return "";
   }
 }
-       

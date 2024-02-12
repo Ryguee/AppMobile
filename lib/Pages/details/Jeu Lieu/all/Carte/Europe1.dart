@@ -1,7 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 
-import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/all/Map/map.dart';
+import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/all/subscreens/mapscreen.dart';
 import 'dart:math';
 
 import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/vrai/faux/faux.dart';
@@ -377,4 +377,3 @@ String _getInfoPays(String pays) {
       return "";
   }
 }
-       

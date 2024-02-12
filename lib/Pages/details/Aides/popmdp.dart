@@ -73,7 +73,7 @@ class PopupMdp extends StatelessWidget {
                   child: Container(
                     height: 200,
                     width: widthScreen - 100,
-                    child: Column(
+                    child: const Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(

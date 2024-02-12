@@ -2,7 +2,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Pages/details/Connexion/connexion.dart';
 
-import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/all/Carte/Europe4.dart';
+import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/all/Carte/Europe1.dart';
 import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/vrai/faux/faux2.dart';
 import 'dart:math';
 
@@ -16,7 +16,7 @@ class Faux extends StatelessWidget {
   Faux({Key? key});
 
   List<Widget> pages = [
-    Europe4Page()
+    EuropePage()
     // Ajoutez d'autres pages ici
   ];
 

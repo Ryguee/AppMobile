@@ -3,17 +3,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/all/subscreens/mapscreen.dart';
 
 import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/vrai/faux/faux2.dart';
+import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/vrai/faux/faux3.dart';
 import 'dart:math';
 
 import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/vrai/faux/vrai2.dart';
+import 'package:assets_audio_player/assets_audio_player.dart';
 
+import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/vrai/faux/vrai3.dart';
 import 'package:flutter_application_1/Pages/details/Salon%20Mini%20jeu/Mini_jeu.dart';
 
 void main() {
-  runApp(Europe2Page());
+  runApp(Europe3Page());
 }
 
-class Europe2Page extends StatelessWidget {
+class Europe3Page extends StatelessWidget {
+  final AssetsAudioPlayer audioPlayer = AssetsAudioPlayer();
+
   final List<String> motsEurope = [
     "Albanie",
     "Allemagne",
@@ -67,7 +72,7 @@ class Europe2Page extends StatelessWidget {
   String fauxPays = "";
   int indexreponse = Random().nextInt(4) + 1;
 
-  Europe2Page() {
+  Europe3Page({super.key}) {
     // Mélanger les pays
     motsEurope.shuffle();
     // Choisir aléatoirement le vrai pays parmi la liste
@@ -166,6 +171,7 @@ class Europe2Page extends StatelessWidget {
               icon: const Icon(Icons.home, color: Colors.black),
               iconSize: 40,
               onPressed: () {
+                audioPlayer.stop();
                 Navigator.push(
                   context,
                   MaterialPageRoute(
@@ -179,14 +185,10 @@ class Europe2Page extends StatelessWidget {
             top: heightScreen / 2 - 250,
             right: widthScreen / 2 + 90,
             child: IconButton(
-              icon: const Icon(Icons.lightbulb, color: Colors.yellow),
+              icon: const Icon(Icons.volume_up, color: Colors.black),
               iconSize: 40,
               onPressed: () {
-                afficherAlertDialog(
-                  context,
-                  "Indice",
-                  _getInfoPays(vraiPays),
-                );
+                audioPlayer.open(Audio('assets/${vraiPays}.mp3'));
               },
             ),
           ),
@@ -211,7 +213,7 @@ class Europe2Page extends StatelessWidget {
             top: heightScreen / 2 - 150,
             left: widthScreen / 2 - 18,
             child: const Text(
-              'Moyen',
+              'Difficile',
               style: TextStyle(
                 fontSize: 15,
               ),
@@ -233,15 +235,16 @@ class Europe2Page extends StatelessWidget {
             left: fauxButtonLeft,
             child: ElevatedButton(
               onPressed: () {
+                audioPlayer.stop();
                 if (indexreponse == 1) {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => Vrai2()),
+                    MaterialPageRoute(builder: (context) => Vrai3()),
                   );
                 } else {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => Faux2()),
+                    MaterialPageRoute(builder: (context) => Faux3()),
                   );
                 }
               },
@@ -264,15 +267,16 @@ class Europe2Page extends StatelessWidget {
             left: vraiButtonLeft,
             child: ElevatedButton(
               onPressed: () {
+                audioPlayer.stop();
                 if (indexreponse == 2) {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => Vrai2()),
+                    MaterialPageRoute(builder: (context) => Vrai3()),
                   );
                 } else {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => Faux2()),
+                    MaterialPageRoute(builder: (context) => Faux3()),
                   );
                 }
               },
@@ -295,15 +299,16 @@ class Europe2Page extends StatelessWidget {
             left: fauxButtonLeft,
             child: ElevatedButton(
               onPressed: () {
+                audioPlayer.stop();
                 if (indexreponse == 3) {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => Vrai2()),
+                    MaterialPageRoute(builder: (context) => Vrai3()),
                   );
                 } else {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => Faux2()),
+                    MaterialPageRoute(builder: (context) => Faux3()),
                   );
                 }
               },
@@ -326,15 +331,16 @@ class Europe2Page extends StatelessWidget {
             left: vraiButtonLeft,
             child: ElevatedButton(
               onPressed: () {
+                audioPlayer.stop();
                 if (indexreponse == 4) {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => Vrai2()),
+                    MaterialPageRoute(builder: (context) => Vrai3()),
                   );
                 } else {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => Faux2()),
+                    MaterialPageRoute(builder: (context) => Faux3()),
                   );
                 }
               },

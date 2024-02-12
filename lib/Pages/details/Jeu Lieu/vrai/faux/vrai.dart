@@ -2,8 +2,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Pages/details/Connexion/connexion.dart';
 
-
-import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/all/Carte/Europe4.dart';
+import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/all/Carte/Europe1.dart';
 import 'dart:math';
 
 import 'package:flutter_application_1/Pages/details/Salon%20Mini%20jeu/Mini_jeu.dart';
@@ -16,7 +15,7 @@ class Vrai extends StatelessWidget {
   Vrai({Key? key});
 
   List<Widget> pages = [
-    Europe4Page(),
+    EuropePage(),
 
     // Ajoutez d'autres pages ici
   ];

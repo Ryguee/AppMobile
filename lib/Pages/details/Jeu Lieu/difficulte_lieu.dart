@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/Parametre_Lieu.dart';
+import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/all/Carte/Europe1.dart';
 import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/all/Carte/Europe2.dart';
 import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/all/Carte/Europe3.dart';
 import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/all/Carte/Europe4.dart';
@@ -122,7 +123,7 @@ class DifficulteLieuPage extends StatelessWidget {
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => ParametreLieuPage()),
+              MaterialPageRoute(builder: (context) => EuropePage()),
             );
           },
           style: ElevatedButton.styleFrom(
