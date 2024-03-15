@@ -38,7 +38,7 @@ class HomePage extends StatelessWidget {
                 );
               },
               style: ElevatedButton.styleFrom(
-                primary: Color.fromARGB(255, 26, 149, 77),
+                backgroundColor: Color.fromARGB(255, 26, 149, 77),
               ),
               child: const Text('Commencer',
                   style: TextStyle(

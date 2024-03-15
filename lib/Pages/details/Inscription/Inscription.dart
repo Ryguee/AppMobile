@@ -353,11 +353,11 @@ class InscriptionPageState extends State<InscriptionPage> {
                                             const ConnexionPage()),
                                   );
                                 },
-                                style: ElevatedButton.styleFrom(
-                                  primary:
-                                      const Color.fromARGB(255, 26, 149, 77),
-                                  minimumSize: const Size(10, 30),
-                                ),
+                               style: ElevatedButton.styleFrom(
+                            backgroundColor: const Color.fromARGB(255, 26, 149, 77),
+                            minimumSize: const Size(10, 30),
+                          ),
+
                                 child: const Text(
                                   'Retour',
                                   style: TextStyle(
@@ -378,7 +378,7 @@ class InscriptionPageState extends State<InscriptionPage> {
                                   );
                                 },
                                 style: ElevatedButton.styleFrom(
-                                  primary:
+                                  backgroundColor:
                                       const Color.fromARGB(255, 26, 149, 77),
                                   minimumSize: const Size(10, 30),
                                 ),

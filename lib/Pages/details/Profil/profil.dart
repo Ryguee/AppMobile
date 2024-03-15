@@ -277,7 +277,7 @@ class ProfilPage extends StatelessWidget {
                   );
                 },
                 style: ElevatedButton.styleFrom(
-                  primary: Color.fromARGB(255, 255, 0, 0),
+                 backgroundColor: Color.fromARGB(255, 255, 0, 0),
                   minimumSize: const Size(80, 30),
                 ),
                 child: const Text(
