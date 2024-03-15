@@ -1,18 +1,24 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/all/subscreens/mapscreen.dart';
+
+import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/vrai/faux/faux2.dart';
+import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/vrai/faux/faux3.dart';
 import 'dart:math';
 
-import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/vrai/faux/faux.dart';
-import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/vrai/faux/vrai.dart';
+import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/vrai/faux/vrai2.dart';
+import 'package:assets_audio_player/assets_audio_player.dart';
+
+import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/vrai/faux/vrai3.dart';
 import 'package:flutter_application_1/Pages/details/Salon%20Mini%20jeu/Mini_jeu.dart';
 
 void main() {
-  runApp(EuropePage());
+  runApp(Drapeau3Page());
 }
 
-class EuropePage extends StatelessWidget {
+class Drapeau3Page extends StatelessWidget {
+  final AssetsAudioPlayer audioPlayer = AssetsAudioPlayer();
+
   final List<String> motsEurope = [
     "Albanie",
     "Allemagne",
@@ -62,13 +68,11 @@ class EuropePage extends StatelessWidget {
     "Vatican"
   ];
 
-  final List<String> mots = [];
-
-  String motSelectionne = "";
   String vraiPays = "";
   String fauxPays = "";
+  int indexreponse = Random().nextInt(4) + 1;
 
-  EuropePage() {
+  Drapeau3Page({super.key}) {
     // Mélanger les pays
     motsEurope.shuffle();
     // Choisir aléatoirement le vrai pays parmi la liste
@@ -98,17 +102,39 @@ class EuropePage extends StatelessWidget {
     // Variables pour déterminer la position des boutons
     double fauxButtonLeft = widthScreen / 2 - 120;
     double vraiButtonLeft = widthScreen / 2 + 20;
+    double valHauteurBouton = MediaQuery.of(context).size.height / 2 + 260;
+    double valHauterBasBouton = MediaQuery.of(context).size.height / 2 + 300;
+    double button1 = widthScreen / 2 + 20;
+    double button2 = widthScreen / 2 + 20;
+    double button3 = widthScreen / 2 + 20;
+    double button4 = widthScreen / 2 + 20;
+
+    var indexRandom = Random().nextInt(motsEurope.length - 4);
 
     // Si la position doit être inversée
+    /* 
     if (!Random().nextBool()) {
       double temp = fauxButtonLeft;
       fauxButtonLeft = vraiButtonLeft;
       vraiButtonLeft = temp;
-    }
+    } */
 
     // Vérifier si les boutons se chevauchent
     if ((vraiButtonLeft - fauxButtonLeft).abs() < 140) {
       fauxButtonLeft -= 140;
+    }
+
+    // Choisir aléatoirement un autre pays pour le premier nouveau bouton, en vérifiant qu'il est différent du vrai et du faux pays
+    String autrePays1 = motsEurope[Random().nextInt(motsEurope.length)];
+    while (autrePays1 == vraiPays || autrePays1 == fauxPays) {
+      autrePays1 = motsEurope[Random().nextInt(motsEurope.length)];
+    }
+    // Choisir aléatoirement un autre pays pour le deuxième nouveau bouton, en vérifiant qu'il est différent du vrai, du faux pays et du premier nouveau bouton
+    String autrePays2 = motsEurope[Random().nextInt(motsEurope.length)];
+    while (autrePays2 == vraiPays ||
+        autrePays2 == fauxPays ||
+        autrePays2 == autrePays1) {
+      autrePays2 = motsEurope[Random().nextInt(motsEurope.length)];
     }
 
     return Scaffold(
@@ -130,7 +156,7 @@ class EuropePage extends StatelessWidget {
             ),
           ),
           Positioned(
-            top: heightScreen / 2 - 300,
+            top: heightScreen / 2 - 250,
             left: widthScreen / 2 - 180,
             child: Container(
               height: heightScreen - 199,
@@ -145,6 +171,7 @@ class EuropePage extends StatelessWidget {
               icon: const Icon(Icons.home, color: Colors.black),
               iconSize: 40,
               onPressed: () {
+                audioPlayer.stop();
                 Navigator.push(
                   context,
                   MaterialPageRoute(
@@ -155,10 +182,21 @@ class EuropePage extends StatelessWidget {
             ),
           ),
           Positioned(
+            top: heightScreen / 2 - 250,
+            right: widthScreen / 2 + 90,
+            child: IconButton(
+              icon: const Icon(Icons.volume_up, color: Colors.black),
+              iconSize: 40,
+              onPressed: () {
+                audioPlayer.open(Audio('assets/${vraiPays}.mp3'));
+              },
+            ),
+          ),
+          Positioned(
             top: heightScreen / 2 - 240,
             left: widthScreen / 2 + 140,
             child: const Icon(
-              Icons.lightbulb,
+              Icons.star_rate_outlined,
               color: Color.fromARGB(255, 255, 209, 2),
               size: 40,
             ),
@@ -175,7 +213,7 @@ class EuropePage extends StatelessWidget {
             top: heightScreen / 2 - 150,
             left: widthScreen / 2 - 18,
             child: const Text(
-              'Facile',
+              'Difficile',
               style: TextStyle(
                 fontSize: 15,
               ),
@@ -193,21 +231,29 @@ class EuropePage extends StatelessWidget {
           ),
           MapScreen(imageUrl: "assets/${vraiPays}.png"),
           Positioned(
-            top: MediaQuery.of(context).size.height / 2 + 270,
+            top: valHauteurBouton,
             left: fauxButtonLeft,
             child: ElevatedButton(
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => Faux()),
-                );
+                audioPlayer.stop();
+                if (indexreponse == 1) {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Vrai3()),
+                  );
+                } else {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Faux3()),
+                  );
+                }
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: const Color.fromARGB(255, 26, 126, 165),
                 minimumSize: const Size(10, 30),
               ),
               child: Text(
-                fauxPays,
+                (indexreponse == 1) ? vraiPays : motsEurope[indexRandom + 1],
                 style: TextStyle(
                   color: const Color.fromARGB(255, 255, 255, 255),
                   fontSize: calculateFontSize(fauxPays),
@@ -217,24 +263,96 @@ class EuropePage extends StatelessWidget {
             ),
           ),
           Positioned(
-            top: MediaQuery.of(context).size.height / 2 + 270,
+            top: valHauteurBouton,
             left: vraiButtonLeft,
             child: ElevatedButton(
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => Vrai()),
-                );
+                audioPlayer.stop();
+                if (indexreponse == 2) {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Vrai3()),
+                  );
+                } else {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Faux3()),
+                  );
+                }
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: const Color.fromARGB(255, 26, 126, 165),
                 minimumSize: const Size(10, 30),
               ),
               child: Text(
-                vraiPays,
+                (indexreponse == 2) ? vraiPays : motsEurope[indexRandom + 2],
                 style: TextStyle(
                   color: const Color.fromARGB(255, 255, 255, 255),
                   fontSize: calculateFontSize(vraiPays),
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ),
+          Positioned(
+            top: valHauterBasBouton,
+            left: fauxButtonLeft,
+            child: ElevatedButton(
+              onPressed: () {
+                audioPlayer.stop();
+                if (indexreponse == 3) {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Vrai3()),
+                  );
+                } else {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Faux3()),
+                  );
+                }
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: const Color.fromARGB(255, 26, 126, 165),
+                minimumSize: const Size(10, 30),
+              ),
+              child: Text(
+                (indexreponse == 3) ? vraiPays : motsEurope[indexRandom + 3],
+                style: const TextStyle(
+                  color: Color.fromARGB(255, 255, 255, 255),
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ),
+          Positioned(
+            top: valHauterBasBouton,
+            left: vraiButtonLeft,
+            child: ElevatedButton(
+              onPressed: () {
+                audioPlayer.stop();
+                if (indexreponse == 4) {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Vrai3()),
+                  );
+                } else {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Faux3()),
+                  );
+                }
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: const Color.fromARGB(255, 26, 126, 165),
+                minimumSize: const Size(10, 30),
+              ),
+              child: Text(
+                (indexreponse == 4) ? vraiPays : motsEurope[indexRandom],
+                style: const TextStyle(
+                  color: Color.fromARGB(255, 255, 255, 255),
+                  fontSize: 16,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -251,16 +369,17 @@ void afficherAlertDialog(BuildContext context, String titre, String message) {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-            title: Text(titre),
-            content: Text(message),
-            actions: <Widget>[
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: Text('OK'),
-              )
-            ]);
+          title: Text(titre),
+          content: Text(message),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text('OK'),
+            )
+          ],
+        );
       });
 }
 
@@ -271,7 +390,7 @@ String _getInfoPays(String pays) {
     case "Allemagne":
       return "Capitale : Berlin\nPopulation : 83.2 millions";
     case "Andorre":
-      return "Capitale : Andorre-la-Vieille\nPopulation : 77 072 habitants";
+      return "\nPopulation : 77 072 habitants";
     case "Autriche":
       return "Capitale : Vienne\nPopulation : 8.9 millions";
     case "Belgique":
@@ -323,7 +442,7 @@ String _getInfoPays(String pays) {
     case "Moldavie":
       return "Capitale : Chisinau\nPopulation : 4.4 millions";
     case "Monaco":
-      return "Capitale : Monaco\nPopulation : 39 500 habitants";
+      return "\nPopulation : 39 500 habitants";
     case "Monténégro":
       return "Capitale : Podgorica\nPopulation : 0.6 millions";
     case "Norvège":
@@ -341,7 +460,7 @@ String _getInfoPays(String pays) {
     case "Russie":
       return "Capitale : Moscou\nPopulation : 144.5 millions";
     case "Saint-Marin":
-      return "Capitale : Saint-Marin\nPopulation : 33 931 habitants";
+      return "\nPopulation : 33 931 habitants";
     case "Serbie":
       return "Capitale : Belgrade\nPopulation : 6.9 millions";
     case "Slovaquie":

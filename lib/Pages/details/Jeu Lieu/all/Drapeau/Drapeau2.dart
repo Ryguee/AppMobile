@@ -1,65 +1,65 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/all/subscreens/mapscreen.dart';
-import 'dart:math';
 
+import 'dart:math';
+import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/all/Drapeau/Drapeau1.dart';
 import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/vrai/faux/faux.dart';
 import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/vrai/faux/vrai.dart';
 import 'package:flutter_application_1/Pages/details/Salon%20Mini%20jeu/Mini_jeu.dart';
 
 void main() {
-  runApp(EuropePage());
+  runApp(DrapeauPage2());
 }
 
-class EuropePage extends StatelessWidget {
+class DrapeauPage2 extends StatelessWidget {
   final List<String> motsEurope = [
-    "Albanie",
-    "Allemagne",
-    "Andorre",
-    "Autriche",
-    "Belgique",
-    "Biélorussie",
-    "Bosnie",
-    "Bulgarie",
-    "Chypre",
-    "Croatie",
-    "Danemark",
-    "Espagne",
-    "Estonie",
-    "Finlande",
-    "France",
-    "Grèce",
-    "Hongrie",
-    "Irlande",
-    "Islande",
-    "Italie",
-    "Kosovo",
-    "Lettonie",
-    "Liechtenstein",
-    "Lituanie",
-    "Luxembourg",
-    "Macédoine",
-    "Malte",
-    "Moldavie",
-    "Monaco",
-    "Monténégro",
-    "Norvège",
-    "Pays-Bas",
-    "Pologne",
-    "Portugal",
-    "Roumanie",
-    "Royaume-Uni",
-    "Russie",
-    "Saint-Marin",
-    "Serbie",
-    "Slovaquie",
-    "Slovénie",
-    "Suède",
-    "Suisse",
-    "Tchéquie",
-    "Ukraine",
-    "Vatican"
+    "Albanie1",
+    "Allemagne1",
+    "Andorre1",
+    "Autriche1",
+    "Belgique1",
+    "Biélorussie1",
+    "Bosnie1",
+    "Bulgarie1",
+    "Chypre1",
+    "Croatie1",
+    "Danemark1",
+    "Espagne1",
+    "Estonie1",
+    "Finlande1",
+    "France1",
+    "Grèce1",
+    "Hongrie1",
+    "Irlande1",
+    "Islande1",
+    "Italie1",
+    "Kosovo1",
+    "Lettonie1",
+    "Liechtenstein1",
+    "Lituanie1",
+    "Luxembourg1",
+    "Macédoine1",
+    "Malte1",
+    "Moldavie1",
+    "Monaco1",
+    "Monténégro1",
+    "Norvège1",
+    "Pays-Bas1",
+    "Pologne1",
+    "Portugal1",
+    "Roumanie1",
+    "Royaume-Uni1",
+    "Russie1",
+    "Saint-Marin1",
+    "Serbie1",
+    "Slovaquie1",
+    "Slovénie1",
+    "Suède1",
+    "Suisse1",
+    "Tchéquie1",
+    "Ukraine1",
+    "Vatican1"
   ];
 
   final List<String> mots = [];
@@ -68,7 +68,7 @@ class EuropePage extends StatelessWidget {
   String vraiPays = "";
   String fauxPays = "";
 
-  EuropePage() {
+  DrapeauPage2() {
     // Mélanger les pays
     motsEurope.shuffle();
     // Choisir aléatoirement le vrai pays parmi la liste
@@ -130,7 +130,7 @@ class EuropePage extends StatelessWidget {
             ),
           ),
           Positioned(
-            top: heightScreen / 2 - 300,
+            top: heightScreen / 2 - 250,
             left: widthScreen / 2 - 180,
             child: Container(
               height: heightScreen - 199,
@@ -155,10 +155,25 @@ class EuropePage extends StatelessWidget {
             ),
           ),
           Positioned(
+            top: heightScreen / 2 - 250,
+            right: widthScreen / 2 + 90,
+            child: IconButton(
+              icon: const Icon(Icons.lightbulb, color: Colors.yellow),
+              iconSize: 40,
+              onPressed: () {
+                afficherAlertDialog(
+                  context,
+                  "Indice",
+                  _getInfoPays(vraiPays),
+                );
+              },
+            ),
+          ),
+          Positioned(
             top: heightScreen / 2 - 240,
             left: widthScreen / 2 + 140,
             child: const Icon(
-              Icons.lightbulb,
+              Icons.star_rate_outlined,
               color: Color.fromARGB(255, 255, 209, 2),
               size: 40,
             ),

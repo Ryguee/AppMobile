@@ -1,18 +1,20 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/all/subscreens/mapscreen.dart';
+
 import 'dart:math';
 
-import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/vrai/faux/faux.dart';
-import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/vrai/faux/vrai.dart';
+import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/vrai/faux/faux4.dart';
+
+import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/vrai/faux/vrai4.dart';
 import 'package:flutter_application_1/Pages/details/Salon%20Mini%20jeu/Mini_jeu.dart';
 
 void main() {
-  runApp(EuropePage());
+  runApp(Drapeau4Page());
 }
 
-class EuropePage extends StatelessWidget {
+class Drapeau4Page extends StatelessWidget {
+  final TextEditingController _controller = TextEditingController();
   final List<String> motsEurope = [
     "Albanie",
     "Allemagne",
@@ -49,9 +51,9 @@ class EuropePage extends StatelessWidget {
     "Pologne",
     "Portugal",
     "Roumanie",
-    "Royaume-Uni",
+    "Royaume Uni",
     "Russie",
-    "Saint-Marin",
+    "Saint Marin",
     "Serbie",
     "Slovaquie",
     "Slovénie",
@@ -68,7 +70,7 @@ class EuropePage extends StatelessWidget {
   String vraiPays = "";
   String fauxPays = "";
 
-  EuropePage() {
+  Drapeau4Page() {
     // Mélanger les pays
     motsEurope.shuffle();
     // Choisir aléatoirement le vrai pays parmi la liste
@@ -112,156 +114,152 @@ class EuropePage extends StatelessWidget {
     }
 
     return Scaffold(
-      body: Stack(
-        children: <Widget>[
-          Image.asset(
-            'assets/10.png',
-            width: widthScreen,
-            height: heightScreen,
-            fit: BoxFit.cover,
-          ),
-          BackdropFilter(
-            filter: ImageFilter.blur(
-              sigmaX: 3,
-              sigmaY: 3,
-            ),
-            child: Container(
-              color: Colors.transparent,
-            ),
-          ),
-          Positioned(
-            top: heightScreen / 2 - 300,
-            left: widthScreen / 2 - 180,
-            child: Container(
-              height: heightScreen - 199,
-              width: widthScreen - 50,
-              color: const Color.fromRGBO(255, 255, 255, 0.6),
-            ),
-          ),
-          Positioned(
-            top: heightScreen / 2 - 250,
-            right: widthScreen / 2 + 130,
-            child: IconButton(
-              icon: const Icon(Icons.home, color: Colors.black),
-              iconSize: 40,
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const MiniJeuPages(),
-                  ),
-                );
-              },
-            ),
-          ),
-          Positioned(
-            top: heightScreen / 2 - 240,
-            left: widthScreen / 2 + 140,
-            child: const Icon(
-              Icons.lightbulb,
-              color: Color.fromARGB(255, 255, 209, 2),
-              size: 40,
-            ),
-          ),
-          Positioned(
-            top: heightScreen / 2 - 185,
-            left: widthScreen / 2 - 20,
-            child: const Text(
-              'Lieu',
-              style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
-            ),
-          ),
-          Positioned(
-            top: heightScreen / 2 - 150,
-            left: widthScreen / 2 - 18,
-            child: const Text(
-              'Facile',
-              style: TextStyle(
-                fontSize: 15,
-              ),
-            ),
-          ),
-          Positioned(
-            top: heightScreen / 2 - 100,
-            left: widthScreen / 2 - 110,
-            child: const Text(
-              'Quel est le pays en rouge?',
-              style: TextStyle(
-                fontSize: 18,
-              ),
-            ),
-          ),
-          MapScreen(imageUrl: "assets/${vraiPays}.png"),
-          Positioned(
-            top: MediaQuery.of(context).size.height / 2 + 270,
-            left: fauxButtonLeft,
-            child: ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => Faux()),
-                );
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: const Color.fromARGB(255, 26, 126, 165),
-                minimumSize: const Size(10, 30),
-              ),
-              child: Text(
-                fauxPays,
-                style: TextStyle(
-                  color: const Color.fromARGB(255, 255, 255, 255),
-                  fontSize: calculateFontSize(fauxPays),
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-          ),
-          Positioned(
-            top: MediaQuery.of(context).size.height / 2 + 270,
-            left: vraiButtonLeft,
-            child: ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => Vrai()),
-                );
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: const Color.fromARGB(255, 26, 126, 165),
-                minimumSize: const Size(10, 30),
-              ),
-              child: Text(
-                vraiPays,
-                style: TextStyle(
-                  color: const Color.fromARGB(255, 255, 255, 255),
-                  fontSize: calculateFontSize(vraiPays),
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-          ),
-        ],
+        body: Stack(children: <Widget>[
+      Image.asset(
+        'assets/10.png',
+        width: widthScreen,
+        height: heightScreen,
+        fit: BoxFit.cover,
       ),
-    );
+      BackdropFilter(
+        filter: ImageFilter.blur(
+          sigmaX: 3,
+          sigmaY: 3,
+        ),
+        child: Container(
+          color: Colors.transparent,
+        ),
+      ),
+      Positioned(
+        top: heightScreen / 2 - 250,
+        left: widthScreen / 2 - 180,
+        child: Container(
+          height: heightScreen - 199,
+          width: widthScreen - 50,
+          color: const Color.fromRGBO(255, 255, 255, 0.6),
+        ),
+      ),
+      Positioned(
+        top: heightScreen / 2 - 250,
+        right: widthScreen / 2 + 130,
+        child: IconButton(
+          icon: const Icon(Icons.home, color: Colors.black),
+          iconSize: 40,
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const MiniJeuPages(),
+              ),
+            );
+          },
+        ),
+      ),
+      Positioned(
+        top: heightScreen / 2 - 240,
+        left: widthScreen / 2 + 140,
+        child: const Icon(
+          Icons.star_rate_outlined,
+          color: Color.fromARGB(255, 255, 209, 2),
+          size: 40,
+        ),
+      ),
+      Positioned(
+        top: heightScreen / 2 - 185,
+        left: widthScreen / 2 - 20,
+        child: const Text(
+          'Lieu',
+          style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+        ),
+      ),
+      Positioned(
+        top: heightScreen / 2 - 150,
+        left: widthScreen / 2 - 18,
+        child: const Text(
+          'Extrème',
+          style: TextStyle(
+            fontSize: 15,
+          ),
+        ),
+      ),
+      Positioned(
+        top: heightScreen / 2 - 100,
+        left: widthScreen / 2 - 110,
+        child: const Text(
+          'Quel est le pays en rouge?',
+          style: TextStyle(fontSize: 18),
+        ),
+      ),
+      MapScreen(imageUrl: "assets/${vraiPays}.png"),
+      const SizedBox(
+        height: 200,
+      ),
+      Positioned(
+        top: heightScreen / 2 +
+            270, // Définissez la position verticale par rapport au haut de l'écran
+        left: widthScreen / 2 -
+            62.5, // Ajustez la position horizontale pour centrer le TextField
+        child: Container(
+          child: SizedBox(
+            width: 125,
+            height: 20,
+            child: TextField(
+              controller: _controller,
+              decoration: const InputDecoration(
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(10),
+                  ),
+                ),
+                labelText: 'Pays',
+                labelStyle: TextStyle(
+                  fontSize: 16,
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ),
+        ),
+      ),
+      Positioned(
+        top: heightScreen / 2 +
+            290, // Position verticale par rapport au haut de l'écran
+        left: widthScreen / 2 -
+            62.5, // Position horizontale pour centrer le TextField
+        child: Column(
+          children: [
+            SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
+                String enteredText = _controller.text.trim().toLowerCase();
+                if (enteredText == vraiPays.toLowerCase()) {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Vrai4()),
+                  );
+                } else if (enteredText == fauxPays.toLowerCase()) {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Faux4()),
+                  );
+                } else {
+                  // Cas où le pays saisi n'est ni le vrai pays ni le faux pays
+                  // Vous pouvez rediriger vers une autre page ou afficher un message d'erreur
+                  // Dans cet exemple, je redirige simplement vers une page générique
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Faux4()),
+                  );
+                }
+              },
+              child: const Text('Valider'),
+            ),
+          ],
+        ),
+      ),
+    ]));
   }
-}
-
-void afficherAlertDialog(BuildContext context, String titre, String message) {
-  showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-            title: Text(titre),
-            content: Text(message),
-            actions: <Widget>[
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: Text('OK'),
-              )
-            ]);
-      });
 }
 
 String _getInfoPays(String pays) {

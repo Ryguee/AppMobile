@@ -9,10 +9,10 @@ import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/vrai/faux/vrai.da
 import 'package:flutter_application_1/Pages/details/Salon%20Mini%20jeu/Mini_jeu.dart';
 
 void main() {
-  runApp(EuropePage());
+  runApp(PopulationPage());
 }
 
-class EuropePage extends StatelessWidget {
+class PopulationPage extends StatelessWidget {
   final List<String> motsEurope = [
     "Albanie",
     "Allemagne",
@@ -68,7 +68,7 @@ class EuropePage extends StatelessWidget {
   String vraiPays = "";
   String fauxPays = "";
 
-  EuropePage() {
+  PopulationPage() {
     // Mélanger les pays
     motsEurope.shuffle();
     // Choisir aléatoirement le vrai pays parmi la liste
@@ -130,7 +130,7 @@ class EuropePage extends StatelessWidget {
             ),
           ),
           Positioned(
-            top: heightScreen / 2 - 300,
+            top: heightScreen / 2 - 250,
             left: widthScreen / 2 - 180,
             child: Container(
               height: heightScreen - 199,
@@ -155,10 +155,25 @@ class EuropePage extends StatelessWidget {
             ),
           ),
           Positioned(
+            top: heightScreen / 2 - 250,
+            right: widthScreen / 2 + 90,
+            child: IconButton(
+              icon: const Icon(Icons.lightbulb, color: Colors.yellow),
+              iconSize: 40,
+              onPressed: () {
+                afficherAlertDialog(
+                  context,
+                  "Indice",
+                  _getInfoPays(vraiPays),
+                );
+              },
+            ),
+          ),
+          Positioned(
             top: heightScreen / 2 - 240,
             left: widthScreen / 2 + 140,
             child: const Icon(
-              Icons.lightbulb,
+              Icons.star_rate_outlined,
               color: Color.fromARGB(255, 255, 209, 2),
               size: 40,
             ),
