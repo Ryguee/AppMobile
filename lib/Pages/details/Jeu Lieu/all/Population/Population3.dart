@@ -2,14 +2,14 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/all/subscreens/mapscreen.dart';
 
-import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/vrai/faux/faux2.dart';
-import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/vrai/faux/faux3.dart';
+import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/vrai/Vrai/faux%20%20lieuEU/faux2.dart';
+import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/vrai/Vrai/faux%20%20lieuEU/faux3.dart';
 import 'dart:math';
 
-import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/vrai/faux/vrai2.dart';
+import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/vrai/Vrai/faux%20%20lieuEU/vrai2.dart';
 import 'package:assets_audio_player/assets_audio_player.dart';
 
-import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/vrai/faux/vrai3.dart';
+import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/vrai/Vrai/faux%20%20lieuEU/vrai3.dart';
 import 'package:flutter_application_1/Pages/details/Salon%20Mini%20jeu/Mini_jeu.dart';
 
 void main() {
@@ -20,52 +20,52 @@ class PopulationPage3 extends StatelessWidget {
   final AssetsAudioPlayer audioPlayer = AssetsAudioPlayer();
 
   final List<String> motsEurope = [
-    "Albanie",
-    "Allemagne",
-    "Andorre",
-    "Autriche",
-    "Belgique",
-    "Biélorussie",
-    "Bosnie",
-    "Bulgarie",
-    "Chypre",
-    "Croatie",
-    "Danemark",
-    "Espagne",
-    "Estonie",
-    "Finlande",
-    "France",
-    "Grèce",
-    "Hongrie",
-    "Irlande",
-    "Islande",
-    "Italie",
-    "Kosovo",
-    "Lettonie",
-    "Liechtenstein",
-    "Lituanie",
-    "Luxembourg",
-    "Macédoine",
-    "Malte",
-    "Moldavie",
-    "Monaco",
-    "Monténégro",
-    "Norvège",
-    "Pays-Bas",
-    "Pologne",
-    "Portugal",
-    "Roumanie",
-    "Royaume-Uni",
-    "Russie",
-    "Saint-Marin",
-    "Serbie",
-    "Slovaquie",
-    "Slovénie",
-    "Suède",
-    "Suisse",
-    "Tchéquie",
-    "Ukraine",
-    "Vatican"
+    "2,8 millions",
+    "83 millions",
+    "77 000",
+    "8,9 millions",
+    "11,5 millions",
+    "9,4 millions",
+    "3,3 millions",
+    "6,9 millions",
+    "1,2 million",
+    "4 millions",
+    "5,8 millions",
+    "47 millions",
+    "1,3 million",
+    "5,5 millions",
+    "67 millions",
+    "10,4 millions",
+    "9,7 millions",
+    "4,9 millions",
+    "364 000",
+    "60 millions",
+    "1,8 million",
+    "1,9 million",
+    "38 000",
+    "2,7 millions",
+    "626 000",
+    "2,1 millions",
+    "514 000",
+    "2,6 millions",
+    "39 000",
+    "622 000",
+    "5,4 millions",
+    "17,4 millions",
+    "38 millions",
+    "10,3 millions",
+    "19 millions",
+    "68 millions",
+    "146 millions",
+    "34 000",
+    "7 millions",
+    "5,4 millions",
+    "2,1 millions",
+    "10,4 millions",
+    "8,6 millions",
+    "10,7 millions",
+    "41,9 millions",
+    "800"
   ];
 
   String vraiPays = "";

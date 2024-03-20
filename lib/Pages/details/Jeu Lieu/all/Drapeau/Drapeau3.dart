@@ -1,15 +1,13 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/all/subscreens/mapscreen.dart';
+import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/all/subscreens/drapeauscreen.dart';
 
-import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/vrai/faux/faux2.dart';
-import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/vrai/faux/faux3.dart';
+import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/vrai/Vrai/Faux%20DrapeauEU/faux3.dart';
+import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/vrai/Vrai/Faux%20DrapeauEU/vrai3.dart';
 import 'dart:math';
 
-import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/vrai/faux/vrai2.dart';
 import 'package:assets_audio_player/assets_audio_player.dart';
 
-import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/vrai/faux/vrai3.dart';
 import 'package:flutter_application_1/Pages/details/Salon%20Mini%20jeu/Mini_jeu.dart';
 
 void main() {
@@ -183,22 +181,13 @@ class Drapeau3Page extends StatelessWidget {
           ),
           Positioned(
             top: heightScreen / 2 - 250,
-            right: widthScreen / 2 + 90,
+            left: widthScreen / 2 + 130,
             child: IconButton(
               icon: const Icon(Icons.volume_up, color: Colors.black),
               iconSize: 40,
               onPressed: () {
                 audioPlayer.open(Audio('assets/${vraiPays}.mp3'));
               },
-            ),
-          ),
-          Positioned(
-            top: heightScreen / 2 - 240,
-            left: widthScreen / 2 + 140,
-            child: const Icon(
-              Icons.star_rate_outlined,
-              color: Color.fromARGB(255, 255, 209, 2),
-              size: 40,
             ),
           ),
           Positioned(
@@ -219,17 +208,17 @@ class Drapeau3Page extends StatelessWidget {
               ),
             ),
           ),
-          Positioned(
+           Positioned(
             top: heightScreen / 2 - 100,
-            left: widthScreen / 2 - 110,
+            left: widthScreen / 2 - 150,
             child: const Text(
-              'Quel est le pays en rouge?',
+              'A quel pays appartient ce drapeau?',
               style: TextStyle(
                 fontSize: 18,
               ),
             ),
           ),
-          MapScreen(imageUrl: "assets/${vraiPays}.png"),
+          DrapeauScreen(imageUrl: "assets/${vraiPays}.jpg"),
           Positioned(
             top: valHauteurBouton,
             left: fauxButtonLeft,
@@ -239,12 +228,12 @@ class Drapeau3Page extends StatelessWidget {
                 if (indexreponse == 1) {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => Vrai3()),
+                    MaterialPageRoute(builder: (context) => VraiDREU3()),
                   );
                 } else {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => Faux3()),
+                    MaterialPageRoute(builder: (context) => FauxDREU3()),
                   );
                 }
               },
@@ -271,12 +260,12 @@ class Drapeau3Page extends StatelessWidget {
                 if (indexreponse == 2) {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => Vrai3()),
+                    MaterialPageRoute(builder: (context) => VraiDREU3()),
                   );
                 } else {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => Faux3()),
+                    MaterialPageRoute(builder: (context) => FauxDREU3()),
                   );
                 }
               },
@@ -303,12 +292,12 @@ class Drapeau3Page extends StatelessWidget {
                 if (indexreponse == 3) {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => Vrai3()),
+                    MaterialPageRoute(builder: (context) => VraiDREU3()),
                   );
                 } else {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => Faux3()),
+                    MaterialPageRoute(builder: (context) => FauxDREU3()),
                   );
                 }
               },
@@ -335,12 +324,12 @@ class Drapeau3Page extends StatelessWidget {
                 if (indexreponse == 4) {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => Vrai3()),
+                    MaterialPageRoute(builder: (context) => VraiDREU3()),
                   );
                 } else {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => Faux3()),
+                    MaterialPageRoute(builder: (context) => FauxDREU3()),
                   );
                 }
               },

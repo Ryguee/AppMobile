@@ -2,10 +2,10 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/all/subscreens/mapscreen.dart';
 
-import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/vrai/faux/faux2.dart';
+import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/vrai/Vrai/faux%20%20lieuEU/faux2.dart';
 import 'dart:math';
 
-import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/vrai/faux/vrai2.dart';
+import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/vrai/Vrai/faux%20%20lieuEU/vrai2.dart';
 
 import 'package:flutter_application_1/Pages/details/Salon%20Mini%20jeu/Mini_jeu.dart';
 
@@ -176,25 +176,10 @@ class Europe2Page extends StatelessWidget {
             ),
           ),
           Positioned(
-            top: heightScreen / 2 - 250,
-            right: widthScreen / 2 + 90,
-            child: IconButton(
-              icon: const Icon(Icons.lightbulb, color: Colors.yellow),
-              iconSize: 40,
-              onPressed: () {
-                afficherAlertDialog(
-                  context,
-                  "Indice",
-                  _getInfoPays(vraiPays),
-                );
-              },
-            ),
-          ),
-          Positioned(
             top: heightScreen / 2 - 240,
             left: widthScreen / 2 + 140,
             child: const Icon(
-              Icons.star_rate_outlined,
+              Icons.lightbulb,
               color: Color.fromARGB(255, 255, 209, 2),
               size: 40,
             ),

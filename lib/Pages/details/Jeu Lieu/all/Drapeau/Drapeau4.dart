@@ -1,12 +1,13 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/all/subscreens/drapeauscreen.dart';
 import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/all/subscreens/mapscreen.dart';
 
 import 'dart:math';
 
-import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/vrai/faux/faux4.dart';
+import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/vrai/Vrai/faux%20%20lieuEU/faux4.dart';
 
-import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/vrai/faux/vrai4.dart';
+import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/vrai/Vrai/faux%20%20lieuEU/vrai4.dart';
 import 'package:flutter_application_1/Pages/details/Salon%20Mini%20jeu/Mini_jeu.dart';
 
 void main() {
@@ -184,13 +185,15 @@ class Drapeau4Page extends StatelessWidget {
       ),
       Positioned(
         top: heightScreen / 2 - 100,
-        left: widthScreen / 2 - 110,
+        left: widthScreen / 2 - 150,
         child: const Text(
-          'Quel est le pays en rouge?',
-          style: TextStyle(fontSize: 18),
+          'A quel pays appartient ce drapeau?',
+          style: TextStyle(
+            fontSize: 18,
+          ),
         ),
       ),
-      MapScreen(imageUrl: "assets/${vraiPays}.png"),
+      DrapeauScreen(imageUrl: "assets/${vraiPays}.jpg"),
       const SizedBox(
         height: 200,
       ),

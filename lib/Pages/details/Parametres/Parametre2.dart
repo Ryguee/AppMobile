@@ -133,7 +133,7 @@ class Parametre2Pages extends StatelessWidget {
             ),
           ),
           Positioned(
-            top: MediaQuery.of(context).size.height / 2 - 350,
+            top: MediaQuery.of(context).size.height / 2 - 400,
             left: MediaQuery.of(context).size.width / 2 - 35,
             child: const Text(
               'Paramètres',

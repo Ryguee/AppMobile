@@ -4,8 +4,8 @@ import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/all/subscreens/ma
 
 import 'dart:math';
 import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/all/Drapeau/Drapeau1.dart';
-import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/vrai/faux/faux.dart';
-import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/vrai/faux/vrai.dart';
+import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/vrai/Vrai/faux%20%20lieuEU/faux.dart';
+import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/vrai/Vrai/faux%20%20lieuEU/vrai.dart';
 import 'package:flutter_application_1/Pages/details/Salon%20Mini%20jeu/Mini_jeu.dart';
 
 void main() {
@@ -14,52 +14,52 @@ void main() {
 
 class PopulationPage2 extends StatelessWidget {
   final List<String> motsEurope = [
-    "Albanie1",
-    "Allemagne1",
-    "Andorre1",
-    "Autriche1",
-    "Belgique1",
-    "Biélorussie1",
-    "Bosnie1",
-    "Bulgarie1",
-    "Chypre1",
-    "Croatie1",
-    "Danemark1",
-    "Espagne1",
-    "Estonie1",
-    "Finlande1",
-    "France1",
-    "Grèce1",
-    "Hongrie1",
-    "Irlande1",
-    "Islande1",
-    "Italie1",
-    "Kosovo1",
-    "Lettonie1",
-    "Liechtenstein1",
-    "Lituanie1",
-    "Luxembourg1",
-    "Macédoine1",
-    "Malte1",
-    "Moldavie1",
-    "Monaco1",
-    "Monténégro1",
-    "Norvège1",
-    "Pays-Bas1",
-    "Pologne1",
-    "Portugal1",
-    "Roumanie1",
-    "Royaume-Uni1",
-    "Russie1",
-    "Saint-Marin1",
-    "Serbie1",
-    "Slovaquie1",
-    "Slovénie1",
-    "Suède1",
-    "Suisse1",
-    "Tchéquie1",
-    "Ukraine1",
-    "Vatican1"
+    "2,8 millions",
+"83 millions",
+"77 000",
+"8,9 millions",
+"11,5 millions",
+"9,4 millions",
+"3,3 millions",
+"6,9 millions",
+"1,2 million",
+"4 millions",
+"5,8 millions",
+"47 millions",
+"1,3 million",
+"5,5 millions",
+"67 millions",
+"10,4 millions",
+"9,7 millions",
+"4,9 millions",
+"364 000",
+"60 millions",
+"1,8 million",
+"1,9 million",
+"38 000",
+"2,7 millions",
+"626 000",
+"2,1 millions",
+"514 000",
+"2,6 millions",
+"39 000",
+"622 000",
+"5,4 millions",
+"17,4 millions",
+"38 millions",
+"10,3 millions",
+"19 millions",
+"68 millions",
+"146 millions",
+"34 000",
+"7 millions",
+"5,4 millions",
+"2,1 millions",
+"10,4 millions",
+"8,6 millions",
+"10,7 millions",
+"41,9 millions",
+"800"
   ];
 
   final List<String> mots = [];
@@ -155,25 +155,10 @@ class PopulationPage2 extends StatelessWidget {
             ),
           ),
           Positioned(
-            top: heightScreen / 2 - 250,
-            right: widthScreen / 2 + 90,
-            child: IconButton(
-              icon: const Icon(Icons.lightbulb, color: Colors.yellow),
-              iconSize: 40,
-              onPressed: () {
-                afficherAlertDialog(
-                  context,
-                  "Indice",
-                  _getInfoPays(vraiPays),
-                );
-              },
-            ),
-          ),
-          Positioned(
             top: heightScreen / 2 - 240,
             left: widthScreen / 2 + 140,
             child: const Icon(
-              Icons.star_rate_outlined,
+              Icons.lightbulb,
               color: Color.fromARGB(255, 255, 209, 2),
               size: 40,
             ),

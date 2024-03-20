@@ -4,9 +4,9 @@ import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/all/subscreens/ma
 
 import 'dart:math';
 
-import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/vrai/faux/faux4.dart';
+import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/vrai/Vrai/faux%20%20lieuEU/faux4.dart';
 
-import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/vrai/faux/vrai4.dart';
+import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/vrai/Vrai/faux%20%20lieuEU/vrai4.dart';
 import 'package:flutter_application_1/Pages/details/Salon%20Mini%20jeu/Mini_jeu.dart';
 
 void main() {
@@ -155,15 +155,7 @@ class Europe4Page extends StatelessWidget {
           },
         ),
       ),
-      Positioned(
-        top: heightScreen / 2 - 240,
-        left: widthScreen / 2 + 140,
-        child: const Icon(
-          Icons.star_rate_outlined,
-          color: Color.fromARGB(255, 255, 209, 2),
-          size: 40,
-        ),
-      ),
+      
       Positioned(
         top: heightScreen / 2 - 185,
         left: widthScreen / 2 - 20,
@@ -196,9 +188,9 @@ class Europe4Page extends StatelessWidget {
       ),
       Positioned(
         top: heightScreen / 2 +
-            270, // Définissez la position verticale par rapport au haut de l'écran
+            270,
         left: widthScreen / 2 -
-            62.5, // Ajustez la position horizontale pour centrer le TextField
+            62.5,
         child: Container(
           child: SizedBox(
             width: 125,

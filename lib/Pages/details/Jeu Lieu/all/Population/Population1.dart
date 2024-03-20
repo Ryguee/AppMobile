@@ -1,11 +1,11 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-
+import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/all/subscreens/drapeauscreen.dart';
 import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/all/subscreens/mapscreen.dart';
 import 'dart:math';
 
-import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/vrai/faux/faux.dart';
-import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/vrai/faux/vrai.dart';
+import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/vrai/Vrai/faux%20%20lieuEU/faux.dart';
+import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/vrai/Vrai/faux%20%20lieuEU/vrai.dart';
 import 'package:flutter_application_1/Pages/details/Salon%20Mini%20jeu/Mini_jeu.dart';
 
 void main() {
@@ -13,53 +13,53 @@ void main() {
 }
 
 class PopulationPage extends StatelessWidget {
-  final List<String> motsEurope = [
-    "Albanie",
-    "Allemagne",
-    "Andorre",
-    "Autriche",
-    "Belgique",
-    "Biélorussie",
-    "Bosnie",
-    "Bulgarie",
-    "Chypre",
-    "Croatie",
-    "Danemark",
-    "Espagne",
-    "Estonie",
-    "Finlande",
-    "France",
-    "Grèce",
-    "Hongrie",
-    "Irlande",
-    "Islande",
-    "Italie",
-    "Kosovo",
-    "Lettonie",
-    "Liechtenstein",
-    "Lituanie",
-    "Luxembourg",
-    "Macédoine",
-    "Malte",
-    "Moldavie",
-    "Monaco",
-    "Monténégro",
-    "Norvège",
-    "Pays-Bas",
-    "Pologne",
-    "Portugal",
-    "Roumanie",
-    "Royaume-Uni",
-    "Russie",
-    "Saint-Marin",
-    "Serbie",
-    "Slovaquie",
-    "Slovénie",
-    "Suède",
-    "Suisse",
-    "Tchéquie",
-    "Ukraine",
-    "Vatican"
+  final List<Map<String, String>> motsEurope = [
+    {"Albanie": "2,8 millions"},
+    {"Allemagne": "83 millions"},
+    {"Andorre": "77 000"},
+    {"Autriche": "8,9 millions"},
+    {"Belgique": "11,5 millions"},
+    {"Biélorussie": "9,4 millions"},
+    {"Bosnie": "3,3 millions"},
+    {"Bulgarie": "6,9 millions"},
+    {"Chypre": "1,2 million"},
+    {"Croatie": "4 millions"},
+    {"Danemark": "5,8 millions"},
+    {"Espagne": "47 millions"},
+    {"Estonie": "1,3 million"},
+    {"Finlande": "5,5 millions"},
+    {"France": "67 millions"},
+    {"Grèce": "10,4 millions"},
+    {"Hongrie": "9,7 millions"},
+    {"Irlande": "4,9 millions"},
+    {"Islande": "364 000"},
+    {"Italie": "60 millions"},
+    {"Kosovo": "1,8 million"},
+    {"Lettonie": "1,9 million"},
+    {"Liechtenstein": "38 000"},
+    {"Lituanie": "2,7 millions"},
+    {"Luxembourg": "626 000"},
+    {"Macédoine": "2,1 millions"},
+    {"Malte": "514 000"},
+    {"Moldavie": "2,6 millions"},
+    {"Monaco": "39 000"},
+    {"Monténégro": "622 000"},
+    {"Norvège": "5,4 millions"},
+    {"Pays-Bas": "17,4 millions"},
+    {"Pologne": "38 millions"},
+    {"Portugal": "10,3 millions"},
+    {"Roumanie": "19 millions"},
+    {"Royaume-Uni": "68 millions"},
+    {"Russie": "146 millions"},
+    {"Saint-Marin": "34 000"},
+    {"Serbie": "7 millions"},
+    {"Slovaquie": "5,4 millions"},
+    {"Slovénie": "2,1 millions"},
+    {"Suède": "10,4 millions"},
+    {"Suisse": "8,6 millions"},
+    {"Tchéquie": "10,7 millions"},
+    {"Ukraine": "41,9 millions"},
+    {"Vatican": "800"},
   ];
 
   final List<String> mots = [];
@@ -72,11 +72,11 @@ class PopulationPage extends StatelessWidget {
     // Mélanger les pays
     motsEurope.shuffle();
     // Choisir aléatoirement le vrai pays parmi la liste
-    vraiPays = motsEurope[Random().nextInt(motsEurope.length)];
+    vraiPays = motsEurope[Random().nextInt(motsEurope.length)].keys.first;
     // Choisir aléatoirement un autre pays pour le faux bouton, en vérifiant qu'il est différent du vrai pays
-    fauxPays = motsEurope[Random().nextInt(motsEurope.length)];
+    fauxPays = motsEurope[Random().nextInt(motsEurope.length)].keys.first;
     while (fauxPays == vraiPays) {
-      fauxPays = motsEurope[Random().nextInt(motsEurope.length)];
+      fauxPays = motsEurope[Random().nextInt(motsEurope.length)].keys.first;
     }
   }
 
@@ -155,25 +155,10 @@ class PopulationPage extends StatelessWidget {
             ),
           ),
           Positioned(
-            top: heightScreen / 2 - 250,
-            right: widthScreen / 2 + 90,
-            child: IconButton(
-              icon: const Icon(Icons.lightbulb, color: Colors.yellow),
-              iconSize: 40,
-              onPressed: () {
-                afficherAlertDialog(
-                  context,
-                  "Indice",
-                  _getInfoPays(vraiPays),
-                );
-              },
-            ),
-          ),
-          Positioned(
             top: heightScreen / 2 - 240,
             left: widthScreen / 2 + 140,
             child: const Icon(
-              Icons.star_rate_outlined,
+              Icons.lightbulb,
               color: Color.fromARGB(255, 255, 209, 2),
               size: 40,
             ),
@@ -206,7 +191,7 @@ class PopulationPage extends StatelessWidget {
               ),
             ),
           ),
-          MapScreen(imageUrl: "assets/${vraiPays}.png"),
+          DrapeauScreen(imageUrl: "assets/${vraiPays}.jpg"),
           Positioned(
             top: MediaQuery.of(context).size.height / 2 + 270,
             left: fauxButtonLeft,

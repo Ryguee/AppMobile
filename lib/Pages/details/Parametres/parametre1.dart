@@ -136,7 +136,7 @@ class _Parametre1PagesState extends State<Parametre1Pages> {
           ),
         ),
         Positioned(
-          top: MediaQuery.of(context).size.height / 2 - 350,
+          top: MediaQuery.of(context).size.height / 2 - 400,
           left: MediaQuery.of(context).size.width / 2 - 35,
           child: const Text(
             'Paramètres',

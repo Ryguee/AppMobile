@@ -2,14 +2,14 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/all/subscreens/mapscreen.dart';
 
-import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/vrai/faux/faux2.dart';
-import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/vrai/faux/faux3.dart';
+import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/vrai/Vrai/faux%20%20lieuEU/faux2.dart';
+import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/vrai/Vrai/faux%20%20lieuEU/faux3.dart';
 import 'dart:math';
 
-import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/vrai/faux/vrai2.dart';
+import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/vrai/Vrai/faux%20%20lieuEU/vrai2.dart';
 import 'package:assets_audio_player/assets_audio_player.dart';
 
-import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/vrai/faux/vrai3.dart';
+import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/vrai/Vrai/faux%20%20lieuEU/vrai3.dart';
 import 'package:flutter_application_1/Pages/details/Salon%20Mini%20jeu/Mini_jeu.dart';
 
 void main() {
@@ -183,22 +183,13 @@ class Europe3Page extends StatelessWidget {
           ),
           Positioned(
             top: heightScreen / 2 - 250,
-            right: widthScreen / 2 + 90,
+            left: widthScreen / 2 + 130,
             child: IconButton(
               icon: const Icon(Icons.volume_up, color: Colors.black),
               iconSize: 40,
               onPressed: () {
                 audioPlayer.open(Audio('assets/${vraiPays}.mp3'));
               },
-            ),
-          ),
-          Positioned(
-            top: heightScreen / 2 - 240,
-            left: widthScreen / 2 + 140,
-            child: const Icon(
-              Icons.star_rate_outlined,
-              color: Color.fromARGB(255, 255, 209, 2),
-              size: 40,
             ),
           ),
           Positioned(
