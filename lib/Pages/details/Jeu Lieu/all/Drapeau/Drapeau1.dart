@@ -76,11 +76,8 @@ class DrapeauPage extends StatelessWidget {
   String fauxPays = "";
 
   DrapeauPage() {
-    // Mélanger les pays
     motsEurope.shuffle();
-    // Choisir aléatoirement le vrai pays parmi la liste
     vraiPays = motsEurope[Random().nextInt(motsEurope.length)];
-    // Choisir aléatoirement un autre pays pour le faux bouton, en vérifiant qu'il est différent du vrai pays
     fauxPays = motsEurope[Random().nextInt(motsEurope.length)];
     while (fauxPays == vraiPays) {
       fauxPays = motsEurope[Random().nextInt(motsEurope.length)];

@@ -1,18 +1,24 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/all/subscreens/drapeauscreen.dart';
 import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/all/subscreens/mapscreen.dart';
 import 'dart:math';
 
 import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/vrai/Vrai/faux%20%20LieuEU/faux.dart';
+import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/vrai/Vrai/faux%20%20LieuEU/faux2.dart';
 import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/vrai/Vrai/faux%20%20LieuEU/vrai.dart';
+import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/vrai/Vrai/faux%20%20LieuEU/vrai2.dart';
+import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/vrai/Vrai/faux%20%20PopulationEU/faux2.dart';
+import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/vrai/Vrai/faux%20%20PopulationEU/vrai2.dart';
 import 'package:flutter_application_1/Pages/details/Salon%20Mini%20jeu/Mini_jeu.dart';
 
-void main() {
-  runApp(PopulationPage2());
+class PopulationPage2 extends StatefulWidget {
+  @override
+  PopulationPage2State createState() => PopulationPage2State();
 }
 
-class PopulationPage2 extends StatelessWidget {
+class PopulationPage2State extends State<PopulationPage2> {
   final List<Map<String, String>> motsEurope = [
     {"Albanie": "2,8 millions"},
     {"Allemagne": "83 millions"},
@@ -64,28 +70,47 @@ class PopulationPage2 extends StatelessWidget {
 
   final List<String> mots = [];
 
-  String motSelectionne = "";
   String vraiPays = "";
-  String fauxPays = "";
-  String fauxPopulation = "";
   String vraiPopulation = "";
-
-  PopulationPage2() {
-    // Mélanger les pays
+  String fauxPays1 = "";
+  String fauxPopulation1 = "";
+  String fauxPays2 = "";
+  String fauxPopulation2 = "";
+  String fauxPays3 = "";
+  late int indexReponse;
+  String fauxPopulation3 = "";
+  bool dataready = false;
+  Initialise() {
     motsEurope.shuffle();
-    // mettre le random defini en haut puis prendre entry .
-    int random = Random().nextInt(motsEurope.length);
-    int random2 = Random().nextInt(motsEurope.length);
-    // Choisir aléatoirement le vrai pays parmi la liste
-    vraiPays = motsEurope[random].keys.first;
-    vraiPopulation = motsEurope[random].values.first.toString();
-    print(vraiPopulation);
-    // Choisir aléatoirement un autre pays pour le faux bouton, en vérifiant qu'il est différent du vrai pays
-    fauxPopulation = motsEurope[random2].values.first.toString();
-    fauxPays = motsEurope[random2].keys.first;
-    while (fauxPays == vraiPays) {
-      fauxPays = motsEurope[Random().nextInt(motsEurope.length)].keys.first;
-    }
+    int vraiIndex = Random().nextInt(motsEurope.length);
+
+    int fauxIndex1 = Random().nextInt(motsEurope.length);
+
+    indexReponse = Random().nextInt(3);
+
+    int fauxIndex2;
+    do {
+      fauxIndex2 = Random().nextInt(motsEurope.length);
+    } while (fauxIndex2 == vraiIndex || fauxIndex2 == fauxIndex1);
+
+    int fauxIndex3;
+    do {
+      fauxIndex3 = Random().nextInt(motsEurope.length);
+    } while (fauxIndex3 == vraiIndex || fauxIndex3 == fauxIndex1);
+
+    setState(() {
+      vraiPays = motsEurope[vraiIndex].keys.first;
+      vraiPopulation = motsEurope[vraiIndex].values.first.toString();
+      fauxPays1 = motsEurope[fauxIndex1].keys.first;
+      fauxPopulation1 = motsEurope[fauxIndex1].values.first.toString();
+      fauxPays2 = motsEurope[fauxIndex2].keys.first;
+      fauxPopulation2 = motsEurope[fauxIndex2].values.first.toString();
+      fauxPays3 = motsEurope[fauxIndex3].keys.first;
+      fauxPopulation3 = motsEurope[fauxIndex3].values.first.toString();
+      dataready = true;
+    });
+
+    
   }
 
   double calculateFontSize(String mot) {
@@ -99,218 +124,229 @@ class PopulationPage2 extends StatelessWidget {
   }
 
   @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Initialise();
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     double heightScreen = MediaQuery.of(context).size.height;
     double widthScreen = MediaQuery.of(context).size.width;
 
     // Variables pour déterminer la position des boutons
+    /*
     double fauxButtonLeft = widthScreen / 2 - 120;
     double vraiButtonLeft = widthScreen / 2 + 20;
-
-    // Si la position doit être inversée
-    if (!Random().nextBool()) {
-      double temp = fauxButtonLeft;
-      fauxButtonLeft = vraiButtonLeft;
-      vraiButtonLeft = temp;
-    }
-
-    // Vérifier si les boutons se chevauchent
-    if ((vraiButtonLeft - fauxButtonLeft).abs() < 140) {
-      fauxButtonLeft -= 140;
-    }
+    double fauxButtonLeft3 = widthScreen / 2 + 20;*/
+    double hauteur = heightScreen / 2 + 200;
+    double bas = heightScreen / 2 + 250;
+    double droite = widthScreen / 2 + 20;
+    double gauche = widthScreen / 2 - 120;
 
     return Scaffold(
-      body: Stack(
-        children: <Widget>[
-          Image.asset(
-            'assets/10.png',
-            width: widthScreen,
-            height: heightScreen,
-            fit: BoxFit.cover,
-          ),
-          BackdropFilter(
-            filter: ImageFilter.blur(
-              sigmaX: 3,
-              sigmaY: 3,
-            ),
-            child: Container(
-              color: Colors.transparent,
-            ),
-          ),
-          Positioned(
-            top: heightScreen / 2 - 350,
-            left: widthScreen / 2 - 180,
-            child: Container(
-              height: heightScreen - 199,
-              width: widthScreen - 50,
-              color: const Color.fromRGBO(255, 255, 255, 0.6),
-            ),
-          ),
-          Positioned(
-            top: heightScreen / 2 - 350,
-            right: widthScreen / 2 + 130,
-            child: IconButton(
-              icon: const Icon(Icons.home, color: Colors.black),
-              iconSize: 40,
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const MiniJeuPages(),
+      body: (dataready)
+          ? Stack(
+              children: <Widget>[
+                Image.asset(
+                  'assets/10.png',
+                  width: widthScreen,
+                  height: heightScreen,
+                  fit: BoxFit.cover,
+                ),
+                BackdropFilter(
+                  filter: ImageFilter.blur(
+                    sigmaX: 3,
+                    sigmaY: 3,
                   ),
-                );
-              },
-            ),
-          ),
-          Positioned(
-            top: heightScreen / 2 - 350,
-            left: widthScreen / 2 + 140,
-            child: const Icon(
-              Icons.lightbulb,
-              color: Color.fromARGB(255, 255, 209, 2),
-              size: 40,
-            ),
-          ),
-          Positioned(
-            top: heightScreen / 2 - 255,
-            left: widthScreen / 2 - 20,
-            child: const Text(
-              'Lieu',
-              style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
-            ),
-          ),
-          Positioned(
-            top: heightScreen / 2 - 200,
-            left: widthScreen / 2 - 18,
-            child: const Text(
-              'Facile',
-              style: TextStyle(
-                fontSize: 15,
-              ),
-            ),
-          ),
-          Positioned(
-            top: heightScreen / 2 - 170,
-            left: widthScreen / 2 - 110,
-            child: const Text(
-              'Quel est le pays en rouge?',
-              style: TextStyle(
-                fontSize: 18,
-              ),
-            ),
-          ),
-          DrapeauScreen(imageUrl: "assets/${vraiPays}.jpg"),
-          Positioned(
-            top: MediaQuery.of(context).size.height / 2 + 200,
-            left: fauxButtonLeft,
-            child: ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => Faux()),
-                );
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: const Color.fromARGB(255, 26, 126, 165),
-                minimumSize: const Size(10, 30),
-              ),
-              child: Text(
-                fauxPopulation,
-                style: TextStyle(
-                  color: const Color.fromARGB(255, 255, 255, 255),
-                  fontSize: calculateFontSize(fauxPopulation),
-                  fontWeight: FontWeight.bold,
+                  child: Container(
+                    color: Colors.transparent,
+                  ),
                 ),
-              ),
-            ),
-          ),
-          Positioned(
-            top: MediaQuery.of(context).size.height / 2 + 200,
-            left: vraiButtonLeft,
-            child: ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => Vrai()),
-                );
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: const Color.fromARGB(255, 26, 126, 165),
-                minimumSize: const Size(10, 30),
-              ),
-              child: Text(
-                vraiPopulation,
-                style: TextStyle(
-                  color: const Color.fromARGB(255, 255, 255, 255),
-                  fontSize: calculateFontSize(vraiPopulation),
-                  fontWeight: FontWeight.bold,
+                Positioned(
+                  top: heightScreen / 2 - 350,
+                  left: widthScreen / 2 - 180,
+                  child: Container(
+                    height: heightScreen - 199,
+                    width: widthScreen - 50,
+                    color: const Color.fromRGBO(255, 255, 255, 0.6),
+                  ),
                 ),
-              ),
-            ),
-          ),
-          Positioned(
-            top: MediaQuery.of(context).size.height / 2 + 250,
-            left: fauxButtonLeft,
-            child: ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => Faux()),
-                );
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: const Color.fromARGB(255, 26, 126, 165),
-                minimumSize: const Size(10, 30),
-              ),
-              child: Text(
-                fauxPopulation,
-                style: TextStyle(
-                  color: const Color.fromARGB(255, 255, 255, 255),
-                  fontSize: calculateFontSize(fauxPopulation),
-                  fontWeight: FontWeight.bold,
+                Positioned(
+                  top: heightScreen / 2 - 350,
+                  right: widthScreen / 2 + 130,
+                  child: IconButton(
+                    icon: const Icon(Icons.home, color: Colors.black),
+                    iconSize: 40,
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const MiniJeuPages(),
+                        ),
+                      );
+                    },
+                  ),
                 ),
-              ),
-            ),
-          ),
-          Container(
-            margin: EdgeInsets.only(
-              top: MediaQuery.of(context).size.height / 2 + 300,
-              left: fauxButtonLeft,
-            ),
-            child: ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => Faux()),
-                );
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: const Color.fromARGB(255, 26, 126, 165),
-                minimumSize: const Size(10, 30),
-              ),
-              child: Text(
-                fauxPopulation,
-                style: TextStyle(
-                  color: const Color.fromARGB(255, 255, 255, 255),
-                  fontSize: calculateFontSize(fauxPopulation),
-                  fontWeight: FontWeight.bold,
+                Positioned(
+                  top: heightScreen / 2 - 350,
+                  left: widthScreen / 2 + 140,
+                  child: GestureDetector(
+                      child: const Icon(
+                        Icons.lightbulb,
+                        color: Color.fromARGB(255, 255, 209, 2),
+                        size: 40,
+                      ),
+                      onTap: () {
+                        afficherAlertDialog(context, vraiPays);
+                      }),
                 ),
+                Positioned(
+                  top: heightScreen / 2 - 255,
+                  left: widthScreen / 2 - 20,
+                  child: const Text(
+                    'Lieu',
+                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                  ),
+                ),
+                Positioned(
+                  top: heightScreen / 2 - 200,
+                  left: widthScreen / 2 - 18,
+                  child: const Text(
+                    'Facile',
+                    style: TextStyle(
+                      fontSize: 15,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  top: heightScreen / 2 - 170,
+                  left: widthScreen / 2 - 110,
+                  child: const Text(
+                    'Quel est le pays en rouge?',
+                    style: TextStyle(
+                      fontSize: 18,
+                    ),
+                  ),
+                ),
+                DrapeauScreen(imageUrl: "assets/${vraiPays}.jpg"),
+                Positioned(
+                  top: (indexReponse == 0) ? hauteur : hauteur,
+                  left: (indexReponse == 0) ? droite : gauche,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => FauxPOEU2()),
+                      );
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color.fromARGB(255, 26, 126, 165),
+                      minimumSize: const Size(10, 30),
+                    ),
+                    child: Text(
+                      fauxPopulation1,
+                      style: TextStyle(
+                        color: const Color.fromARGB(255, 255, 255, 255),
+                        fontSize: calculateFontSize(fauxPopulation1),
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ),
+                Positioned(
+                  top: HauteurVraiResponse(indexReponse, hauteur, bas),
+                  left: LargeurVraiResponse(indexReponse, gauche, droite),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => VraiPOEU2()),
+                      );
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color.fromARGB(255, 26, 126, 165),
+                      minimumSize: const Size(10, 30),
+                    ),
+                    child: Text(
+                      vraiPopulation,
+                      style: TextStyle(
+                        color: const Color.fromARGB(255, 255, 255, 255),
+                        fontSize: calculateFontSize(vraiPopulation),
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ),
+                Positioned(
+                  top: (indexReponse == 2) ? hauteur : bas,
+                  left: (indexReponse == 2) ? droite : gauche,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => FauxPOEU2()),
+                      );
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color.fromARGB(255, 26, 126, 165),
+                      minimumSize: const Size(10, 30),
+                    ),
+                    child: Text(
+                      fauxPopulation2,
+                      style: TextStyle(
+                        color: const Color.fromARGB(255, 255, 255, 255),
+                        fontSize: calculateFontSize(fauxPopulation2),
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ),
+                Positioned(
+                  top: (indexReponse == 3) ? hauteur : bas,
+                  left: (indexReponse == 3) ? droite : droite,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => FauxPOEU2()),
+                      );
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color.fromARGB(255, 26, 126, 165),
+                      minimumSize: const Size(10, 30),
+                    ),
+                    child: Text(
+                      fauxPopulation3,
+                      style: TextStyle(
+                        color: const Color.fromARGB(255, 255, 255, 255),
+                        fontSize: calculateFontSize(fauxPopulation3),
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            )
+          : Center(
+              child: SizedBox(
+                child: CircularProgressIndicator(),
               ),
             ),
-          ),
-        ],
-      ),
     );
   }
 }
 
-void afficherAlertDialog(BuildContext context, String titre, String message) {
+void afficherAlertDialog(BuildContext context, String Pays) {
+  String content = _getInfoPays(Pays);
   showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-            title: Text(titre),
-            content: Text(message),
+            title: Text(Pays),
+            content: Text(content),
             actions: <Widget>[
               TextButton(
                 onPressed: () {
@@ -320,6 +356,40 @@ void afficherAlertDialog(BuildContext context, String titre, String message) {
               )
             ]);
       });
+}
+
+double HauteurVraiResponse(
+  int place,
+  double hauteur,
+  double bas,
+) {
+  switch (place) {
+    case 0:
+      return hauteur;
+    case 1:
+      return hauteur;
+    case 2:
+      return bas;
+    case 3:
+      return bas;
+    default:
+      return 1.0;
+  }
+}
+
+double LargeurVraiResponse(int place, double gauche, double droite) {
+  switch (place) {
+    case 0:
+      return gauche;
+    case 1:
+      return droite;
+    case 2:
+      return gauche;
+    case 3:
+      return droite;
+    default:
+      return 1.0;
+  }
 }
 
 String _getInfoPays(String pays) {

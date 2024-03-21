@@ -6,6 +6,8 @@ import 'dart:math';
 
 import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/vrai/Vrai/faux%20%20LieuEU/faux.dart';
 import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/vrai/Vrai/faux%20%20LieuEU/vrai.dart';
+import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/vrai/Vrai/faux%20%20PopulationEU/faux4.dart';
+import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/vrai/Vrai/faux%20%20PopulationEU/vrai4.dart';
 import 'package:flutter_application_1/Pages/details/Salon%20Mini%20jeu/Mini_jeu.dart';
 
 void main() {
@@ -13,6 +15,8 @@ void main() {
 }
 
 class PopulationPage4 extends StatelessWidget {
+  final TextEditingController _controller = TextEditingController();
+
   final List<Map<String, String>> motsEurope = [
     {"Albanie": "2,8 millions"},
     {"Allemagne": "83 millions"},
@@ -120,137 +124,148 @@ class PopulationPage4 extends StatelessWidget {
     }
 
     return Scaffold(
-      body: Stack(
-        children: <Widget>[
-          Image.asset(
-            'assets/10.png',
-            width: widthScreen,
-            height: heightScreen,
-            fit: BoxFit.cover,
-          ),
-          BackdropFilter(
-            filter: ImageFilter.blur(
-              sigmaX: 3,
-              sigmaY: 3,
-            ),
-            child: Container(
-              color: Colors.transparent,
-            ),
-          ),
-          Positioned(
-            top: heightScreen / 2 - 250,
-            left: widthScreen / 2 - 180,
-            child: Container(
-              height: heightScreen - 199,
-              width: widthScreen - 50,
-              color: const Color.fromRGBO(255, 255, 255, 0.6),
-            ),
-          ),
-          Positioned(
-            top: heightScreen / 2 - 250,
-            right: widthScreen / 2 + 130,
-            child: IconButton(
-              icon: const Icon(Icons.home, color: Colors.black),
-              iconSize: 40,
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const MiniJeuPages(),
-                  ),
-                );
-              },
-            ),
-          ),
-          Positioned(
-            top: heightScreen / 2 - 240,
-            left: widthScreen / 2 + 140,
-            child: const Icon(
-              Icons.lightbulb,
-              color: Color.fromARGB(255, 255, 209, 2),
-              size: 40,
-            ),
-          ),
-          Positioned(
-            top: heightScreen / 2 - 185,
-            left: widthScreen / 2 - 20,
-            child: const Text(
-              'Lieu',
-              style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
-            ),
-          ),
-          Positioned(
-            top: heightScreen / 2 - 150,
-            left: widthScreen / 2 - 18,
-            child: const Text(
-              'Facile',
-              style: TextStyle(
-                fontSize: 15,
-              ),
-            ),
-          ),
-          Positioned(
-            top: heightScreen / 2 - 100,
-            left: widthScreen / 2 - 110,
-            child: const Text(
-              'Quel est le pays en rouge?',
-              style: TextStyle(
-                fontSize: 18,
-              ),
-            ),
-          ),
-          DrapeauScreen(imageUrl: "assets/${vraiPays}.jpg"),
-          Positioned(
-            top: MediaQuery.of(context).size.height / 2 + 270,
-            left: fauxButtonLeft,
-            child: ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => Faux()),
-                );
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: const Color.fromARGB(255, 26, 126, 165),
-                minimumSize: const Size(10, 30),
-              ),
-              child: Text(
-                fauxPopulation,
-                style: TextStyle(
-                  color: const Color.fromARGB(255, 255, 255, 255),
-                  fontSize: calculateFontSize(fauxPopulation),
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-          ),
-          Positioned(
-            top: MediaQuery.of(context).size.height / 2 + 270,
-            left: vraiButtonLeft,
-            child: ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => Vrai()),
-                );
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: const Color.fromARGB(255, 26, 126, 165),
-                minimumSize: const Size(10, 30),
-              ),
-              child: Text(
-                vraiPopulation,
-                style: TextStyle(
-                  color: const Color.fromARGB(255, 255, 255, 255),
-                  fontSize: calculateFontSize(vraiPopulation),
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-          ),
-        ],
+        body: Stack(children: <Widget>[
+      Image.asset(
+        'assets/10.png',
+        width: widthScreen,
+        height: heightScreen,
+        fit: BoxFit.cover,
       ),
-    );
+      BackdropFilter(
+        filter: ImageFilter.blur(
+          sigmaX: 3,
+          sigmaY: 3,
+        ),
+        child: Container(
+          color: Colors.transparent,
+        ),
+      ),
+      Positioned(
+        top: heightScreen / 2 - 250,
+        left: widthScreen / 2 - 180,
+        child: Container(
+          height: heightScreen - 199,
+          width: widthScreen - 50,
+          color: const Color.fromRGBO(255, 255, 255, 0.6),
+        ),
+      ),
+      Positioned(
+        top: heightScreen / 2 - 250,
+        right: widthScreen / 2 + 130,
+        child: IconButton(
+          icon: const Icon(Icons.home, color: Colors.black),
+          iconSize: 40,
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const MiniJeuPages(),
+              ),
+            );
+          },
+        ),
+      ),
+      Positioned(
+        top: heightScreen / 2 - 240,
+        left: widthScreen / 2 + 140,
+        child: const Icon(
+          Icons.lightbulb,
+          color: Color.fromARGB(255, 255, 209, 2),
+          size: 40,
+        ),
+      ),
+      Positioned(
+        top: heightScreen / 2 - 185,
+        left: widthScreen / 2 - 20,
+        child: const Text(
+          'Lieu',
+          style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+        ),
+      ),
+      Positioned(
+        top: heightScreen / 2 - 150,
+        left: widthScreen / 2 - 18,
+        child: const Text(
+          'Facile',
+          style: TextStyle(
+            fontSize: 15,
+          ),
+        ),
+      ),
+      Positioned(
+        top: heightScreen / 2 - 100,
+        left: widthScreen / 2 - 110,
+        child: const Text(
+          'Quel est le pays en rouge?',
+          style: TextStyle(
+            fontSize: 18,
+          ),
+        ),
+      ),
+      DrapeauScreen(imageUrl: "assets/${vraiPays}.jpg"),
+      Positioned(
+        top: heightScreen / 2 + 270,
+        left: widthScreen / 2 - 62.5,
+        child: Container(
+          child: SizedBox(
+            width: 125,
+            height: 20,
+            child: TextField(
+              controller: _controller,
+              decoration: const InputDecoration(
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(10),
+                  ),
+                ),
+                labelText: 'Pays',
+                labelStyle: TextStyle(
+                  fontSize: 16,
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ),
+        ),
+      ),
+      Positioned(
+        top: heightScreen / 2 +
+            290, // Position verticale par rapport au haut de l'écran
+        left: widthScreen / 2 -
+            62.5, // Position horizontale pour centrer le TextField
+        child: Column(
+          children: [
+            SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
+                String enteredText = _controller.text.trim().toLowerCase();
+                if (enteredText == vraiPays.toLowerCase()) {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => VraiPOEU4()),
+                  );
+                } else if (enteredText == fauxPays.toLowerCase()) {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => FauxPOEU4()),
+                  );
+                } else {
+                  // Cas où le pays saisi n'est ni le vrai pays ni le faux pays
+                  // Vous pouvez rediriger vers une autre page ou afficher un message d'erreur
+                  // Dans cet exemple, je redirige simplement vers une page générique
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => FauxPOEU4()),
+                  );
+                }
+              },
+              child: const Text('Valider'),
+            ),
+          ],
+        ),
+      ),
+    ]));
   }
 }
 

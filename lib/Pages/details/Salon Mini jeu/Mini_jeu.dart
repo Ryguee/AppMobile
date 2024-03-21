@@ -3,6 +3,7 @@ import 'package:flutter_application_1/Pages/details/Connexion/connexion.dart';
 import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/all/Drapeau/Drapeau1.dart';
 import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/all/difficulte_population.dart';
 import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/difficulte_drapeau.dart';
+import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/difficulte_enigme.dart';
 import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/difficulte_lieu.dart';
 import 'package:flutter_application_1/Pages/details/Parametres/parametre1.dart';
 import 'package:flutter_application_1/Pages/details/Profil/profil.dart';
@@ -178,7 +179,8 @@ class MiniJeuPages extends StatelessWidget {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => DifficultePopulationPage()),
+                MaterialPageRoute(
+                    builder: (context) => DifficultePopulationPage()),
               );
             }),
       ),
@@ -214,7 +216,7 @@ class MiniJeuPages extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => const ConnexionPage()),
+                      builder: (context) => DifficulteenigmePage()),
                 );
               })),
     ]));

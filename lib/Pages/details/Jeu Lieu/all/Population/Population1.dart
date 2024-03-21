@@ -6,13 +6,16 @@ import 'dart:math';
 
 import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/vrai/Vrai/faux%20%20LieuEU/faux.dart';
 import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/vrai/Vrai/faux%20%20LieuEU/vrai.dart';
+import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/vrai/Vrai/faux%20%20PopulationEU/faux.dart';
+import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/vrai/Vrai/faux%20%20PopulationEU/vrai.dart';
 import 'package:flutter_application_1/Pages/details/Salon%20Mini%20jeu/Mini_jeu.dart';
 
-void main() {
-  runApp(PopulationPage());
+class PopulationPage extends StatefulWidget {
+  @override
+  PopulationPageState createState() => PopulationPageState();
 }
 
-class PopulationPage extends StatelessWidget {
+class PopulationPageState extends State<PopulationPage> {
   final List<Map<String, String>> motsEurope = [
     {"Albanie": "2,8 millions"},
     {"Allemagne": "83 millions"},
@@ -69,6 +72,33 @@ class PopulationPage extends StatelessWidget {
   String fauxPays = "";
   String fauxPopulation = "";
   String vraiPopulation = "";
+  bool dataready = false;
+
+  Initialise() {
+    motsEurope.shuffle();
+    int vraiIndex = Random().nextInt(motsEurope.length);
+
+    int fauxIndex1 = Random().nextInt(motsEurope.length);
+
+    int fauxIndex2;
+    do {
+      fauxIndex2 = Random().nextInt(motsEurope.length);
+    } while (fauxIndex2 == vraiIndex || fauxIndex2 == fauxIndex1);
+
+    int fauxIndex3;
+    do {
+      fauxIndex3 = Random().nextInt(motsEurope.length);
+    } while (fauxIndex3 == vraiIndex || fauxIndex3 == fauxIndex1);
+
+    setState(() {
+      vraiPays = motsEurope[vraiIndex].keys.first;
+      vraiPopulation = motsEurope[vraiIndex].values.first.toString();
+      fauxPays = motsEurope[fauxIndex1].keys.first;
+      fauxPopulation = motsEurope[fauxIndex1].values.first.toString();
+
+      dataready = true;
+    });
+  }
 
   PopulationPage() {
     // Mélanger les pays
@@ -99,6 +129,14 @@ class PopulationPage extends StatelessWidget {
   }
 
   @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Initialise();
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     double heightScreen = MediaQuery.of(context).size.height;
     double widthScreen = MediaQuery.of(context).size.width;
@@ -120,147 +158,158 @@ class PopulationPage extends StatelessWidget {
     }
 
     return Scaffold(
-      body: Stack(
-        children: <Widget>[
-          Image.asset(
-            'assets/10.png',
-            width: widthScreen,
-            height: heightScreen,
-            fit: BoxFit.cover,
-          ),
-          BackdropFilter(
-            filter: ImageFilter.blur(
-              sigmaX: 3,
-              sigmaY: 3,
-            ),
-            child: Container(
-              color: Colors.transparent,
-            ),
-          ),
-          Positioned(
-            top: heightScreen / 2 - 250,
-            left: widthScreen / 2 - 180,
-            child: Container(
-              height: heightScreen - 199,
-              width: widthScreen - 50,
-              color: const Color.fromRGBO(255, 255, 255, 0.6),
-            ),
-          ),
-          Positioned(
-            top: heightScreen / 2 - 250,
-            right: widthScreen / 2 + 130,
-            child: IconButton(
-              icon: const Icon(Icons.home, color: Colors.black),
-              iconSize: 40,
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const MiniJeuPages(),
+        body: (dataready)
+            ? Stack(
+                children: <Widget>[
+                  Image.asset(
+                    'assets/10.png',
+                    width: widthScreen,
+                    height: heightScreen,
+                    fit: BoxFit.cover,
                   ),
-                );
-              },
-            ),
-          ),
-          Positioned(
-            top: heightScreen / 2 - 240,
-            left: widthScreen / 2 + 140,
-            child: const Icon(
-              Icons.lightbulb,
-              color: Color.fromARGB(255, 255, 209, 2),
-              size: 40,
-            ),
-          ),
-          Positioned(
-            top: heightScreen / 2 - 185,
-            left: widthScreen / 2 - 20,
-            child: const Text(
-              'Lieu',
-              style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
-            ),
-          ),
-          Positioned(
-            top: heightScreen / 2 - 150,
-            left: widthScreen / 2 - 18,
-            child: const Text(
-              'Facile',
-              style: TextStyle(
-                fontSize: 15,
-              ),
-            ),
-          ),
-          Positioned(
-            top: heightScreen / 2 - 100,
-            left: widthScreen / 2 - 110,
-            child: const Text(
-              'Quel est le pays en rouge?',
-              style: TextStyle(
-                fontSize: 18,
-              ),
-            ),
-          ),
-          DrapeauScreen(imageUrl: "assets/${vraiPays}.jpg"),
-          Positioned(
-            top: MediaQuery.of(context).size.height / 2 + 270,
-            left: fauxButtonLeft,
-            child: ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => Faux()),
-                );
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: const Color.fromARGB(255, 26, 126, 165),
-                minimumSize: const Size(10, 30),
-              ),
-              child: Text(
-                fauxPopulation,
-                style: TextStyle(
-                  color: const Color.fromARGB(255, 255, 255, 255),
-                  fontSize: calculateFontSize(fauxPopulation),
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-          ),
-          Positioned(
-            top: MediaQuery.of(context).size.height / 2 + 270,
-            left: vraiButtonLeft,
-            child: ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => Vrai()),
-                );
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: const Color.fromARGB(255, 26, 126, 165),
-                minimumSize: const Size(10, 30),
-              ),
-              child: Text(
-                vraiPopulation,
-                style: TextStyle(
-                  color: const Color.fromARGB(255, 255, 255, 255),
-                  fontSize: calculateFontSize(vraiPopulation),
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
+                  BackdropFilter(
+                    filter: ImageFilter.blur(
+                      sigmaX: 3,
+                      sigmaY: 3,
+                    ),
+                    child: Container(
+                      color: Colors.transparent,
+                    ),
+                  ),
+                  Positioned(
+                    top: heightScreen / 2 - 350,
+                    left: widthScreen / 2 - 180,
+                    child: Container(
+                      height: heightScreen - 199,
+                      width: widthScreen - 50,
+                      color: const Color.fromRGBO(255, 255, 255, 0.6),
+                    ),
+                  ),
+                  Positioned(
+                    top: heightScreen / 2 - 350,
+                    right: widthScreen / 2 + 130,
+                    child: IconButton(
+                      icon: const Icon(Icons.home, color: Colors.black),
+                      iconSize: 40,
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const MiniJeuPages(),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                  Positioned(
+                    top: heightScreen / 2 - 350,
+                    left: widthScreen / 2 + 140,
+                    child: GestureDetector(
+                        child: const Icon(
+                          Icons.lightbulb,
+                          color: Color.fromARGB(255, 255, 209, 2),
+                          size: 40,
+                        ),
+                        onTap: () {
+                          afficherAlertDialog(context, vraiPays);
+                        }),
+                  ),
+                  Positioned(
+                    top: heightScreen / 2 - 255,
+                    left: widthScreen / 2 - 20,
+                    child: const Text(
+                      'Lieu',
+                      style:
+                          TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  Positioned(
+                    top: heightScreen / 2 - 200,
+                    left: widthScreen / 2 - 18,
+                    child: const Text(
+                      'Facile',
+                      style: TextStyle(
+                        fontSize: 15,
+                      ),
+                    ),
+                  ),
+                  Positioned(
+                    top: heightScreen / 2 - 170,
+                    left: widthScreen / 2 - 110,
+                    child: const Text(
+                      'Quel est le pays en rouge?',
+                      style: TextStyle(
+                        fontSize: 18,
+                      ),
+                    ),
+                  ),
+                  DrapeauScreen(imageUrl: "assets/${vraiPays}.jpg"),
+                  Positioned(
+                    top: MediaQuery.of(context).size.height / 2 + 270,
+                    left: fauxButtonLeft,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => FauxPOEU()),
+                        );
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor:
+                            const Color.fromARGB(255, 26, 126, 165),
+                        minimumSize: const Size(10, 30),
+                      ),
+                      child: Text(
+                        fauxPopulation,
+                        style: TextStyle(
+                          color: const Color.fromARGB(255, 255, 255, 255),
+                          fontSize: calculateFontSize(fauxPopulation),
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ),
+                  Positioned(
+                    top: MediaQuery.of(context).size.height / 2 + 270,
+                    left: vraiButtonLeft,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => VraiPOEU()),
+                        );
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor:
+                            const Color.fromARGB(255, 26, 126, 165),
+                        minimumSize: const Size(10, 30),
+                      ),
+                      child: Text(
+                        vraiPopulation,
+                        style: TextStyle(
+                          color: const Color.fromARGB(255, 255, 255, 255),
+                          fontSize: calculateFontSize(vraiPopulation),
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              )
+            : Center(
+                child: CircularProgressIndicator(),
+              ));
   }
 }
 
-void afficherAlertDialog(BuildContext context, String titre, String message) {
+void afficherAlertDialog(BuildContext context, String Pays) {
+  String content = _getInfoPays(Pays);
   showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-            title: Text(titre),
-            content: Text(message),
+            title: Text(Pays),
+            content: Text(content),
             actions: <Widget>[
               TextButton(
                 onPressed: () {
