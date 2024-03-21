@@ -1,22 +1,21 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/Pages/details/Connexion/connexion.dart';
 
-import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/all/Carte/Europe1.dart';
-import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/vrai/Vrai/faux%20%20LieuEU/faux2.dart';
 import 'dart:math';
 
+import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/all/Carte/Europe4.dart';
+import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/all/Population/Population4.dart';
 import 'package:flutter_application_1/Pages/details/Salon%20Mini%20jeu/Mini_jeu.dart';
 
 void main() {
-  runApp(Faux());
+  runApp(FauxPOEU4());
 }
 
-class Faux extends StatelessWidget {
-  Faux({Key? key});
+class FauxPOEU4 extends StatelessWidget {
+  FauxPOEU4({Key? key});
 
   List<Widget> pages = [
-    EuropePage()
+    PopulationPage4()
     // Ajoutez d'autres pages ici
   ];
 
@@ -113,7 +112,7 @@ class Faux extends StatelessWidget {
               top: heightScreen / 2 - 150,
               left: widthScreen / 2 - 18,
               child: const Text(
-                'Facile',
+                'Difficle',
                 style: TextStyle(
                   fontSize: 15,
                 ),

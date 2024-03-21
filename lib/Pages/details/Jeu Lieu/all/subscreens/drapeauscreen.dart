@@ -15,7 +15,7 @@ class DrapeauScreenState extends State<DrapeauScreen> {
   @override
   Widget build(BuildContext context) {
     return Positioned(
-      top: 450,
+      top: 380,
       width: 420,
       child: InteractiveViewer(
         boundaryMargin: EdgeInsets.all(10),

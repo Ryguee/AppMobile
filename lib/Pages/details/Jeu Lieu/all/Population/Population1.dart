@@ -4,8 +4,8 @@ import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/all/subscreens/dr
 import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/all/subscreens/mapscreen.dart';
 import 'dart:math';
 
-import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/vrai/Vrai/faux%20%20lieuEU/faux.dart';
-import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/vrai/Vrai/faux%20%20lieuEU/vrai.dart';
+import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/vrai/Vrai/faux%20%20LieuEU/faux.dart';
+import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/vrai/Vrai/faux%20%20LieuEU/vrai.dart';
 import 'package:flutter_application_1/Pages/details/Salon%20Mini%20jeu/Mini_jeu.dart';
 
 void main() {
@@ -67,14 +67,22 @@ class PopulationPage extends StatelessWidget {
   String motSelectionne = "";
   String vraiPays = "";
   String fauxPays = "";
+  String fauxPopulation = "";
+  String vraiPopulation = "";
 
   PopulationPage() {
     // Mélanger les pays
     motsEurope.shuffle();
+    // mettre le random defini en haut puis prendre entry .
+    int random = Random().nextInt(motsEurope.length);
+    int random2 = Random().nextInt(motsEurope.length);
     // Choisir aléatoirement le vrai pays parmi la liste
-    vraiPays = motsEurope[Random().nextInt(motsEurope.length)].keys.first;
+    vraiPays = motsEurope[random].keys.first;
+    vraiPopulation = motsEurope[random].values.first.toString();
+    print(vraiPopulation);
     // Choisir aléatoirement un autre pays pour le faux bouton, en vérifiant qu'il est différent du vrai pays
-    fauxPays = motsEurope[Random().nextInt(motsEurope.length)].keys.first;
+    fauxPopulation = motsEurope[random2].values.first.toString();
+    fauxPays = motsEurope[random2].keys.first;
     while (fauxPays == vraiPays) {
       fauxPays = motsEurope[Random().nextInt(motsEurope.length)].keys.first;
     }
@@ -207,10 +215,10 @@ class PopulationPage extends StatelessWidget {
                 minimumSize: const Size(10, 30),
               ),
               child: Text(
-                fauxPays,
+                fauxPopulation,
                 style: TextStyle(
                   color: const Color.fromARGB(255, 255, 255, 255),
-                  fontSize: calculateFontSize(fauxPays),
+                  fontSize: calculateFontSize(fauxPopulation),
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -231,10 +239,10 @@ class PopulationPage extends StatelessWidget {
                 minimumSize: const Size(10, 30),
               ),
               child: Text(
-                vraiPays,
+                vraiPopulation,
                 style: TextStyle(
                   color: const Color.fromARGB(255, 255, 255, 255),
-                  fontSize: calculateFontSize(vraiPays),
+                  fontSize: calculateFontSize(vraiPopulation),
                   fontWeight: FontWeight.bold,
                 ),
               ),

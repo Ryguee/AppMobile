@@ -3,20 +3,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Pages/details/Connexion/connexion.dart';
 
 import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/all/Carte/Europe1.dart';
-import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/vrai/Vrai/faux%20%20LieuEU/faux2.dart';
+import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/all/Population/Population1.dart';
+import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/vrai/Vrai/faux%20%20lieuEU/faux2.dart';
 import 'dart:math';
 
 import 'package:flutter_application_1/Pages/details/Salon%20Mini%20jeu/Mini_jeu.dart';
 
 void main() {
-  runApp(Faux());
+  runApp(FauxPOEU());
 }
 
-class Faux extends StatelessWidget {
-  Faux({Key? key});
+class FauxPOEU extends StatelessWidget {
+  FauxPOEU({Key? key});
 
   List<Widget> pages = [
-    EuropePage()
+    PopulationPage()
     // Ajoutez d'autres pages ici
   ];
 
