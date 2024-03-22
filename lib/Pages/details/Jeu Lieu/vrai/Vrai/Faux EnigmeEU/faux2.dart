@@ -1,23 +1,20 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/Pages/details/Connexion/connexion.dart';
+import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/all/Enigme/Enigme2.dart';
 
-import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/all/Carte/Europe1.dart';
-import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/all/Drapeau/Drapeau1.dart';
-import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/vrai/Vrai/faux%20%20lieuEU/faux2.dart';
 import 'dart:math';
 
 import 'package:flutter_application_1/Pages/details/Salon%20Mini%20jeu/Mini_jeu.dart';
 
 void main() {
-  runApp(FauxDREU());
+  runApp(FauxENEU2());
 }
 
-class FauxDREU extends StatelessWidget {
-  FauxDREU({Key? key});
+class FauxENEU2 extends StatelessWidget {
+  FauxENEU2({Key? key});
 
   List<Widget> pages = [
-    DrapeauPage()
+    EnigmePage2()
     // Ajoutez d'autres pages ici
   ];
 
@@ -76,7 +73,6 @@ class FauxDREU extends StatelessWidget {
                 },
               ),
             ),
-           
             Positioned(
               top: heightScreen / 2 - 150,
               left: widthScreen / 2 - 100,

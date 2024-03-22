@@ -192,9 +192,9 @@ class Drapeau2Page extends StatelessWidget {
           ),
           Positioned(
             top: heightScreen / 2 - 185,
-            left: widthScreen / 2 - 20,
+            left: widthScreen / 2 - 35,
             child: const Text(
-              'Lieu',
+              'Drapeau',
               style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
             ),
           ),

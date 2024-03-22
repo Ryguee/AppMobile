@@ -1,23 +1,20 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/Pages/details/Connexion/connexion.dart';
-
-import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/all/Carte/Europe1.dart';
-import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/all/Drapeau/Drapeau1.dart';
-import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/vrai/Vrai/faux%20%20lieuEU/faux2.dart';
 import 'dart:math';
+import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/all/Enigme/Enigme4.dart';
 
 import 'package:flutter_application_1/Pages/details/Salon%20Mini%20jeu/Mini_jeu.dart';
 
 void main() {
-  runApp(FauxDREU());
+  runApp(VraiENEU4());
 }
 
-class FauxDREU extends StatelessWidget {
-  FauxDREU({Key? key});
+class VraiENEU4 extends StatelessWidget {
+  VraiENEU4({Key? key});
 
   List<Widget> pages = [
-    DrapeauPage()
+    EnigmePage4(),
+
     // Ajoutez d'autres pages ici
   ];
 
@@ -67,7 +64,7 @@ class FauxDREU extends StatelessWidget {
                 icon: const Icon(Icons.home, color: Colors.black),
                 iconSize: 40,
                 onPressed: () {
-                  Navigator.push(
+                  Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
                       builder: (context) => const MiniJeuPages(),
@@ -76,13 +73,12 @@ class FauxDREU extends StatelessWidget {
                 },
               ),
             ),
-           
             Positioned(
               top: heightScreen / 2 - 150,
-              left: widthScreen / 2 - 100,
+              left: widthScreen / 2 - 90,
               child: const Icon(
-                Icons.close,
-                color: Color.fromARGB(255, 255, 0, 0),
+                Icons.check,
+                color: Color.fromARGB(255, 21, 255, 0),
                 size: 200,
               ),
             ),
@@ -90,7 +86,7 @@ class FauxDREU extends StatelessWidget {
               top: heightScreen / 2 + 50,
               left: widthScreen / 2 - 30,
               child: const Text(
-                'Faux',
+                'Vrai',
                 style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
               ),
             ),
@@ -106,7 +102,7 @@ class FauxDREU extends StatelessWidget {
               top: heightScreen / 2 - 250,
               left: widthScreen / 2 - 18,
               child: const Text(
-                'Facile',
+                'Difficile',
                 style: TextStyle(
                   fontSize: 15,
                 ),
@@ -118,7 +114,7 @@ class FauxDREU extends StatelessWidget {
               child: ElevatedButton(
                 onPressed: () {
                   Widget pageAleatoire = choisirPageAleatoire();
-                  Navigator.push(
+                  Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(builder: (context) => pageAleatoire),
                   );

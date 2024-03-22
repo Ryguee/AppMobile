@@ -216,9 +216,9 @@ class PopulationPageState extends State<PopulationPage> {
                   ),
                   Positioned(
                     top: heightScreen / 2 - 255,
-                    left: widthScreen / 2 - 20,
+                    left: widthScreen / 2 - 45,
                     child: const Text(
-                      'Lieu',
+                      'Population',
                       style:
                           TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                     ),
@@ -237,7 +237,7 @@ class PopulationPageState extends State<PopulationPage> {
                     top: heightScreen / 2 - 170,
                     left: widthScreen / 2 - 110,
                     child: const Text(
-                      'Quel est le pays en rouge?',
+                      "Quel est le nombre d'habitant?",
                       style: TextStyle(
                         fontSize: 18,
                       ),

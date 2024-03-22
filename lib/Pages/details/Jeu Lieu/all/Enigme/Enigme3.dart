@@ -1,23 +1,28 @@
 import 'dart:ui';
+import 'package:assets_audio_player/assets_audio_player.dart';
+import 'package:audioplayers/audioplayers.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/all/Models/enigme.dart';
-import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/vrai/Vrai/Faux%20EnigmeEU/faux.dart';
-import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/vrai/Vrai/Faux%20EnigmeEU/vrai.dart';
-import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/vrai/Vrai/faux%20%20LieuEU/faux.dart';
-import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/vrai/Vrai/faux%20%20LieuEU/vrai.dart';
+import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/vrai/Vrai/Faux%20EnigmeEU/faux2.dart';
+import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/vrai/Vrai/Faux%20EnigmeEU/vrai2.dart';
+
+import 'package:assets_audio_player/assets_audio_player.dart';
+
 import 'dart:math';
 
 import 'package:flutter_application_1/Pages/details/Salon%20Mini%20jeu/Mini_jeu.dart';
 
-class EnigmePage1 extends StatefulWidget {
-  const EnigmePage1({super.key});
+class EnigmePage3 extends StatefulWidget {
+  const EnigmePage3({super.key});
 
   @override
-  State<EnigmePage1> createState() => EnigmePage1State();
+  State<EnigmePage3> createState() => EnigmePage3State();
 }
 
-class EnigmePage1State extends State<EnigmePage1> {
+class EnigmePage3State extends State<EnigmePage3> {
+  final AssetsAudioPlayer audioPlayer = AssetsAudioPlayer();
+
   List<Enigme> enigmes = [
     Enigme("Albanie", "Tirana",
         "Ma capitale est Tirana, mais mes montagnes touchent le ciel. Qui suis-je?"),
@@ -122,6 +127,9 @@ class EnigmePage1State extends State<EnigmePage1> {
   String fauxCapitale = "";
   String fauxEnigme = "";
   String vraiEnigme = "";
+  String vraiCapitale2 = "";
+  String fauxCapitale2 = "";
+  String fauxCapitale3 = "";
   bool dataready = false;
 
   Initialise() {
@@ -129,20 +137,18 @@ class EnigmePage1State extends State<EnigmePage1> {
 
     int fauxIndex1 = Random().nextInt(enigmes.length);
 
-    int fauxIndex2;
-    do {
-      fauxIndex2 = Random().nextInt(enigmes.length);
-    } while (fauxIndex2 == vraiIndex || fauxIndex2 == fauxIndex1);
+    int fauxIndex2 = Random().nextInt(enigmes.length);
 
-    int fauxIndex3;
-    do {
-      fauxIndex3 = Random().nextInt(enigmes.length);
-    } while (fauxIndex3 == vraiIndex || fauxIndex3 == fauxIndex1);
+    int fauxIndex3 = Random().nextInt(enigmes.length);
 
     setState(() {
       vraiCapitale = enigmes[vraiIndex].pays;
+      vraiCapitale2 = enigmes[vraiIndex].pays;
       vraiEnigme = enigmes[vraiIndex].enigme;
       fauxCapitale = enigmes[fauxIndex1].pays;
+      fauxCapitale2 = enigmes[fauxIndex2].pays;
+      fauxCapitale3 = enigmes[fauxIndex3].pays;
+
       fauxEnigme = enigmes[fauxIndex1].enigme;
 
       dataready = true;
@@ -190,9 +196,9 @@ class EnigmePage1State extends State<EnigmePage1> {
 
     return Scaffold(
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('assets/10.png'),
+            image: const AssetImage('assets/10.png'),
             fit: BoxFit.cover,
           ),
         ),
@@ -226,6 +232,7 @@ class EnigmePage1State extends State<EnigmePage1> {
                           icon: const Icon(Icons.home, color: Colors.black),
                           iconSize: 40,
                           onPressed: () {
+                            audioPlayer.stop();
                             Navigator.push(
                               context,
                               MaterialPageRoute(
@@ -234,36 +241,36 @@ class EnigmePage1State extends State<EnigmePage1> {
                             );
                           },
                         ),
-                        SizedBox(width: widthScreen - 168),
-                        GestureDetector(
-                            child: const Icon(
-                              Icons.lightbulb,
-                              color: Color.fromARGB(255, 255, 209, 2),
-                              size: 40,
-                            ),
-                            onTap: () {
-                              afficherAlertDialog(context, vraiCapitale);
-                            }),
+                        SizedBox(width: widthScreen - 180),
+                        IconButton(
+                          icon:
+                              const Icon(Icons.volume_up, color: Colors.black),
+                          iconSize: 40,
+                          onPressed: () {
+                            audioPlayer
+                                .open(Audio('assets/${vraiCapitale}.mp3'));
+                          },
+                        ),
                       ],
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 30,
                   ),
                   const Text(
                     'Enigme',
                     style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 15,
                   ),
                   const Text(
-                    'Facile',
+                    'Difficile',
                     style: TextStyle(
                       fontSize: 15,
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 30,
                   ),
                   const Text(
@@ -272,7 +279,7 @@ class EnigmePage1State extends State<EnigmePage1> {
                       fontSize: 18,
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 80,
                   ),
                   Padding(
@@ -280,58 +287,130 @@ class EnigmePage1State extends State<EnigmePage1> {
                     child: Text(
                       vraiEnigme,
                       textAlign: TextAlign.center,
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                      style: const TextStyle(
+                          fontSize: 20, fontWeight: FontWeight.bold),
                     ),
                   ),
-                  SizedBox(
-                    height: 150,
+                  const SizedBox(
+                    height: 100,
                   ),
                   Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        ElevatedButton(
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => FauxENEU()),
-                            );
-                          },
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor:
-                                const Color.fromARGB(255, 26, 126, 165),
-                            minimumSize: const Size(10, 30),
-                          ),
-                          child: Text(
-                            fauxCapitale,
-                            style: TextStyle(
-                              color: const Color.fromARGB(255, 255, 255, 255),
-                              fontSize: calculateFontSize(fauxCapitale),
-                              fontWeight: FontWeight.bold,
+                        Container(
+                          width: 150,
+                          height: 30,
+                          child: ElevatedButton(
+                            onPressed: () {
+                              audioPlayer.stop();
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => FauxENEU2()),
+                              );
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor:
+                                  const Color.fromARGB(255, 26, 126, 165),
+                              minimumSize: const Size(10, 30),
+                            ),
+                            child: Text(
+                              fauxCapitale,
+                              style: TextStyle(
+                                color: const Color.fromARGB(255, 255, 255, 255),
+                                fontSize: calculateFontSize(fauxCapitale),
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                           ),
                         ),
-                        SizedBox(width: 30),
-                        ElevatedButton(
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => VraiENEU()),
-                            );
-                          },
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor:
-                                const Color.fromARGB(255, 26, 126, 165),
-                            minimumSize: const Size(10, 30),
+                        const SizedBox(width: 30),
+                        Container(
+                          width: 150,
+                          height: 30,
+                          child: ElevatedButton(
+                            onPressed: () {
+                              audioPlayer.stop();
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => VraiENEU2()),
+                              );
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor:
+                                  const Color.fromARGB(255, 26, 126, 165),
+                              minimumSize: const Size(10, 30),
+                            ),
+                            child: Text(
+                              vraiCapitale,
+                              style: TextStyle(
+                                color: const Color.fromARGB(255, 255, 255, 255),
+                                fontSize: calculateFontSize(vraiCapitale),
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
                           ),
-                          child: Text(
-                            vraiCapitale,
-                            style: TextStyle(
-                              color: const Color.fromARGB(255, 255, 255, 255),
-                              fontSize: calculateFontSize(vraiCapitale),
-                              fontWeight: FontWeight.bold,
+                        ),
+                      ]),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Container(
+                          width: 150,
+                          height: 30,
+                          child: ElevatedButton(
+                            onPressed: () {
+                              audioPlayer.stop();
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => FauxENEU2()),
+                              );
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor:
+                                  const Color.fromARGB(255, 26, 126, 165),
+                              minimumSize: const Size(10, 30),
+                            ),
+                            child: Text(
+                              fauxCapitale2,
+                              style: TextStyle(
+                                color: const Color.fromARGB(255, 255, 255, 255),
+                                fontSize: calculateFontSize(fauxCapitale2),
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(width: 30),
+                        Container(
+                          width: 150,
+                          height: 30,
+                          child: ElevatedButton(
+                            onPressed: () {
+                              audioPlayer.stop();
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => VraiENEU2()),
+                              );
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor:
+                                  const Color.fromARGB(255, 26, 126, 165),
+                              minimumSize: const Size(10, 30),
+                            ),
+                            child: Text(
+                              fauxCapitale3,
+                              style: TextStyle(
+                                color: const Color.fromARGB(255, 255, 255, 255),
+                                fontSize: calculateFontSize(fauxCapitale3),
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                           ),
                         ),
@@ -358,7 +437,7 @@ class EnigmePage1State extends State<EnigmePage1> {
                   onPressed: () {
                     Navigator.of(context).pop();
                   },
-                  child: Text('OK'),
+                  child: const Text('OK'),
                 )
               ]);
         });

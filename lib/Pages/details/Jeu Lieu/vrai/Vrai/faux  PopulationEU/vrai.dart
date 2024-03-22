@@ -52,7 +52,7 @@ class VraiPOEU extends StatelessWidget {
               ),
             ),
             Positioned(
-              top: heightScreen / 2 - 250,
+              top: heightScreen / 2 - 350,
               left: widthScreen / 2 - 180,
               child: Container(
                 height: heightScreen - 199,
@@ -61,7 +61,7 @@ class VraiPOEU extends StatelessWidget {
               ),
             ),
             Positioned(
-              top: heightScreen / 2 - 250,
+              top: heightScreen / 2 - 350,
               right: widthScreen / 2 + 130,
               child: IconButton(
                 icon: const Icon(Icons.home, color: Colors.black),
@@ -76,17 +76,9 @@ class VraiPOEU extends StatelessWidget {
                 },
               ),
             ),
+            
             Positioned(
-              top: heightScreen / 2 - 240,
-              left: widthScreen / 2 + 140,
-              child: const Icon(
-                Icons.star_rate_outlined,
-                color: Color.fromARGB(255, 255, 209, 2),
-                size: 40,
-              ),
-            ),
-            Positioned(
-              top: heightScreen / 2 - 50,
+              top: heightScreen / 2 - 150,
               left: widthScreen / 2 - 90,
               child: const Icon(
                 Icons.check,
@@ -95,7 +87,7 @@ class VraiPOEU extends StatelessWidget {
               ),
             ),
             Positioned(
-              top: heightScreen / 2 + 150,
+              top: heightScreen / 2 + 50,
               left: widthScreen / 2 - 30,
               child: const Text(
                 'Vrai',
@@ -103,7 +95,7 @@ class VraiPOEU extends StatelessWidget {
               ),
             ),
             Positioned(
-              top: heightScreen / 2 - 185,
+              top: heightScreen / 2 - 285,
               left: widthScreen / 2 - 20,
               child: const Text(
                 'Lieu',
@@ -111,7 +103,7 @@ class VraiPOEU extends StatelessWidget {
               ),
             ),
             Positioned(
-              top: heightScreen / 2 - 150,
+              top: heightScreen / 2 - 250,
               left: widthScreen / 2 - 18,
               child: const Text(
                 'Facile',

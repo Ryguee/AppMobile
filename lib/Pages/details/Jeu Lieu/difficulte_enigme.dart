@@ -9,6 +9,9 @@ import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/all/Drapeau/Drape
 import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/all/Drapeau/Drapeau3.dart';
 import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/all/Drapeau/Drapeau4.dart';
 import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/all/Enigme/Enigme1.dart';
+import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/all/Enigme/Enigme2.dart';
+import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/all/Enigme/Enigme3.dart';
+import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/all/Enigme/Enigme4.dart';
 import 'package:flutter_application_1/Pages/details/Parametres/parametre1.dart';
 import 'package:flutter_application_1/Pages/details/Profil/profil.dart';
 import 'package:flutter_application_1/Pages/details/Salon%20Mini%20jeu/Mini_jeu.dart';
@@ -154,7 +157,7 @@ class DifficulteenigmePage extends StatelessWidget {
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => Drapeau3Page()),
+              MaterialPageRoute(builder: (context) => EnigmePage3()),
             );
           },
           style: ElevatedButton.styleFrom(
@@ -180,7 +183,7 @@ class DifficulteenigmePage extends StatelessWidget {
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => Drapeau2Page()),
+              MaterialPageRoute(builder: (context) => EnigmePage2()),
             );
           },
           style: ElevatedButton.styleFrom(
@@ -206,7 +209,7 @@ class DifficulteenigmePage extends StatelessWidget {
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => Drapeau4Page()),
+              MaterialPageRoute(builder: (context) => EnigmePage4()),
             );
           },
           style: ElevatedButton.styleFrom(

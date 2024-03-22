@@ -1,23 +1,30 @@
 import 'dart:ui';
+import 'package:assets_audio_player/assets_audio_player.dart';
+import 'package:audioplayers/audioplayers.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/all/Models/enigme.dart';
-import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/vrai/Vrai/Faux%20EnigmeEU/faux.dart';
-import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/vrai/Vrai/Faux%20EnigmeEU/vrai.dart';
-import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/vrai/Vrai/faux%20%20LieuEU/faux.dart';
-import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/vrai/Vrai/faux%20%20LieuEU/vrai.dart';
+import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/vrai/Vrai/Faux%20EnigmeEU/faux2.dart';
+import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/vrai/Vrai/Faux%20EnigmeEU/faux4.dart';
+import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/vrai/Vrai/Faux%20EnigmeEU/vrai2.dart';
+
+import 'package:assets_audio_player/assets_audio_player.dart';
+import 'package:flutter_application_1/Pages/details/Jeu%20Lieu/vrai/Vrai/Faux%20EnigmeEU/vrai4.dart';
+
 import 'dart:math';
 
 import 'package:flutter_application_1/Pages/details/Salon%20Mini%20jeu/Mini_jeu.dart';
 
-class EnigmePage1 extends StatefulWidget {
-  const EnigmePage1({super.key});
+class EnigmePage4 extends StatefulWidget {
+  const EnigmePage4({super.key});
 
   @override
-  State<EnigmePage1> createState() => EnigmePage1State();
+  State<EnigmePage4> createState() => EnigmePage4State();
 }
 
-class EnigmePage1State extends State<EnigmePage1> {
+class EnigmePage4State extends State<EnigmePage4> {
+  final TextEditingController _controller = TextEditingController();
+
   List<Enigme> enigmes = [
     Enigme("Albanie", "Tirana",
         "Ma capitale est Tirana, mais mes montagnes touchent le ciel. Qui suis-je?"),
@@ -122,6 +129,9 @@ class EnigmePage1State extends State<EnigmePage1> {
   String fauxCapitale = "";
   String fauxEnigme = "";
   String vraiEnigme = "";
+  String vraiCapitale2 = "";
+  String fauxCapitale2 = "";
+  String fauxCapitale3 = "";
   bool dataready = false;
 
   Initialise() {
@@ -129,20 +139,18 @@ class EnigmePage1State extends State<EnigmePage1> {
 
     int fauxIndex1 = Random().nextInt(enigmes.length);
 
-    int fauxIndex2;
-    do {
-      fauxIndex2 = Random().nextInt(enigmes.length);
-    } while (fauxIndex2 == vraiIndex || fauxIndex2 == fauxIndex1);
+    int fauxIndex2 = Random().nextInt(enigmes.length);
 
-    int fauxIndex3;
-    do {
-      fauxIndex3 = Random().nextInt(enigmes.length);
-    } while (fauxIndex3 == vraiIndex || fauxIndex3 == fauxIndex1);
+    int fauxIndex3 = Random().nextInt(enigmes.length);
 
     setState(() {
       vraiCapitale = enigmes[vraiIndex].pays;
+      vraiCapitale2 = enigmes[vraiIndex].pays;
       vraiEnigme = enigmes[vraiIndex].enigme;
       fauxCapitale = enigmes[fauxIndex1].pays;
+      fauxCapitale2 = enigmes[fauxIndex2].pays;
+      fauxCapitale3 = enigmes[fauxIndex3].pays;
+
       fauxEnigme = enigmes[fauxIndex1].enigme;
 
       dataready = true;
@@ -189,160 +197,155 @@ class EnigmePage1State extends State<EnigmePage1> {
     }
 
     return Scaffold(
-      body: Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage('assets/10.png'),
-            fit: BoxFit.cover,
-          ),
-        ),
-        width: widthScreen,
-        height: heightScreen,
-        child: Column(
-          children: [
-            BackdropFilter(
-              filter: ImageFilter.blur(
-                sigmaX: 3,
-                sigmaY: 3,
-              ),
-              child: Container(
-                color: Colors.transparent,
+        body: Container(
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: const AssetImage('assets/10.png'),
+                fit: BoxFit.cover,
               ),
             ),
-            SizedBox(
-              height: heightScreen / 7,
-            ),
-            Container(
-              height: heightScreen - 199,
-              width: widthScreen - 50,
-              color: const Color.fromRGBO(255, 255, 255, 0.6),
-              child: Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Row(
-                      children: [
-                        IconButton(
-                          icon: const Icon(Icons.home, color: Colors.black),
-                          iconSize: 40,
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const MiniJeuPages(),
-                              ),
-                            );
-                          },
-                        ),
-                        SizedBox(width: widthScreen - 168),
-                        GestureDetector(
-                            child: const Icon(
-                              Icons.lightbulb,
-                              color: Color.fromARGB(255, 255, 209, 2),
-                              size: 40,
-                            ),
-                            onTap: () {
-                              afficherAlertDialog(context, vraiCapitale);
-                            }),
-                      ],
+            width: widthScreen,
+            height: heightScreen,
+            child: Column(children: [
+              BackdropFilter(
+                filter: ImageFilter.blur(
+                  sigmaX: 3,
+                  sigmaY: 3,
+                ),
+                child: Container(
+                  color: Colors.transparent,
+                ),
+              ),
+              SizedBox(
+                height: heightScreen / 7,
+              ),
+              Container(
+                  height: heightScreen - 199,
+                  width: widthScreen - 50,
+                  color: const Color.fromRGBO(255, 255, 255, 0.6),
+                  child: Column(children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        children: [
+                          IconButton(
+                            icon: const Icon(Icons.home, color: Colors.black),
+                            iconSize: 40,
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const MiniJeuPages(),
+                                ),
+                              );
+                            },
+                          ),
+                          SizedBox(width: widthScreen - 168),
+                        ],
+                      ),
                     ),
-                  ),
-                  SizedBox(
-                    height: 30,
-                  ),
-                  const Text(
-                    'Enigme',
-                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
-                  ),
-                  SizedBox(
-                    height: 15,
-                  ),
-                  const Text(
-                    'Facile',
-                    style: TextStyle(
-                      fontSize: 15,
+                    const SizedBox(
+                      height: 30,
                     ),
-                  ),
-                  SizedBox(
-                    height: 30,
-                  ),
-                  const Text(
-                    'Quel est le pays?',
-                    style: TextStyle(
-                      fontSize: 18,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 80,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(20.0),
-                    child: Text(
-                      vraiEnigme,
-                      textAlign: TextAlign.center,
+                    const Text(
+                      'Enigme',
                       style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                          TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                     ),
-                  ),
-                  SizedBox(
-                    height: 150,
-                  ),
-                  Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        ElevatedButton(
-                          onPressed: () {
+                    const SizedBox(
+                      height: 15,
+                    ),
+                    const Text(
+                      'Extrème',
+                      style: TextStyle(
+                        fontSize: 15,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 30,
+                    ),
+                    const Text(
+                      'Quel est le pays?',
+                      style: TextStyle(
+                        fontSize: 18,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 80,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(20.0),
+                      child: Text(
+                        vraiEnigme,
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 100,
+                    ),
+                    Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Container(
+                            child: SizedBox(
+                              width: 125,
+                              height: 20,
+                              child: TextField(
+                                controller: _controller,
+                                decoration: const InputDecoration(
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(10),
+                                    ),
+                                  ),
+                                  labelText: 'Pays',
+                                  labelStyle: TextStyle(
+                                    fontSize: 16,
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ]),
+                    Column(children: [
+                      SizedBox(height: 20),
+                      ElevatedButton(
+                        onPressed: () {
+                          String enteredText =
+                              _controller.text.trim().toLowerCase();
+                          if (enteredText == vraiCapitale.toLowerCase()) {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => FauxENEU()),
+                                  builder: (context) => VraiENEU4()),
                             );
-                          },
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor:
-                                const Color.fromARGB(255, 26, 126, 165),
-                            minimumSize: const Size(10, 30),
-                          ),
-                          child: Text(
-                            fauxCapitale,
-                            style: TextStyle(
-                              color: const Color.fromARGB(255, 255, 255, 255),
-                              fontSize: calculateFontSize(fauxCapitale),
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                        SizedBox(width: 30),
-                        ElevatedButton(
-                          onPressed: () {
+                          } else if (enteredText ==
+                              fauxCapitale.toLowerCase()) {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => VraiENEU()),
+                                  builder: (context) => FauxENEU4()),
                             );
-                          },
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor:
-                                const Color.fromARGB(255, 26, 126, 165),
-                            minimumSize: const Size(10, 30),
-                          ),
-                          child: Text(
-                            vraiCapitale,
-                            style: TextStyle(
-                              color: const Color.fromARGB(255, 255, 255, 255),
-                              fontSize: calculateFontSize(vraiCapitale),
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                      ]),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
+                          } else {
+                            // Cas où le pays saisi n'est ni le vrai pays ni le faux pays
+                            // Vous pouvez rediriger vers une autre page ou afficher un message d'erreur
+                            // Dans cet exemple, je redirige simplement vers une page générique
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => FauxENEU4()),
+                            );
+                          }
+                        },
+                        child: const Text('Valider'),
+                      )
+                    ])
+                  ]))
+            ])));
   }
 
   void afficherAlertDialog(BuildContext context, String Pays) {
@@ -358,7 +361,7 @@ class EnigmePage1State extends State<EnigmePage1> {
                   onPressed: () {
                     Navigator.of(context).pop();
                   },
-                  child: Text('OK'),
+                  child: const Text('OK'),
                 )
               ]);
         });
